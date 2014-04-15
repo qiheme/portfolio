@@ -1,0 +1,66 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+body {
+  background-image: url(https://farm4.staticflickr.com/3705/13592112133_184aae54c6_o.jpg);
+  background-size: 100%;
+  margin: 0px;
+  padding: 0px;
+  color: white;
+}
+
+#avatar img {
+  height: 175px;
+  width: 150px;
+  border-radius: 30px;
+  padding: 1px;
+  border: 5px solid white;
+}
+
+#welcome p {
+  font-family: 'Gloria Hallelujah', cursive;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+#nav-bar {
+  width: 100%;
+  height: 8%;
+  position: fixed;
+  bottom: 70px;
+  background-color: #81EE4D;
+  font-family: 'Gloria Hallelujah', cursive;
+  font-size: 20px;
+  vertical-align: center;
+}
+
+#nav-bar ul {
+  float: right;
+  padding: 0px 10px 0px 0px;
+  border: 0px;
+  margin: 0px;
+}
+
+#footer {
+  position: fixed;
+  bottom: 10px;
+  font-family: 'Gloria Hallelujah', cursive;
+  text-align: center;
+  text-decoration-color: white;
+}
+
+#footer ul{
+  padding: 0px 0px 0px 10px;
+
+}
