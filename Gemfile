@@ -48,3 +48,5 @@ gem 'rspec-rails'
 gem 'capybara-rails'
 gem 'simplecov'
 gem 'ffaker' , group: [:development, :test]
+
+gem 'rails_12factor'
