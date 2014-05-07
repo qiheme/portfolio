@@ -1,34 +1,25 @@
 <!DOCTYPE html>
 <html>
-<link href='http://fonts.googleapis.com/css?family=Gloria+Hallelujah' rel='stylesheet' type='text/css'>
-<head>
-  <title>Quincy</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-  <%= yield %>
-  <center>
-    <div id="avatar">
-      <img src="https://farm4.staticflickr.com/3780/11034209975_826b7979b0.jpg">
-    </div>
-    <div id="welcome">
-      <p>
-        Hi, welcome to the personal website for Quincy Iheme! Please pardon the website appearance, it is currently under construction. Please take a look my <a href="http://www.github.com/qiheme">Github</a> page for my public code repo, or took at look my <a href="http://www.linkedin.com/in/qiheme">LinkedIn</a> for my professional profile. Thank you for visiting my site!!
-      </p>
-    </div>
+  <link href='http://fonts.googleapis.com/css?family=Gloria+Hallelujah' rel='stylesheet' type='text/css'>
+  <head>
+    <title>Quincy</title>
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
     <div id="nav-bar">
       <ul>
         <%= link_to 'Home', root_path %>
-        About Portfolio Contact</ul>
+        About Portfolio Contact
+      </ul>
     </div>
+    <%= yield %>
     <div id="footer">
-    <ul>
-      Website developed by Quincy Iheme
-      <a href="mailto:qiheme@gmail.com">Email</a>
-    </ul>
-  </div>
-  </center>
-</body>
+      <ul>
+        Website developed by Quincy Iheme
+        <a href="mailto:qiheme@gmail.com">Email</a>
+      </ul>
+    </div>
+  </body>
 </html>

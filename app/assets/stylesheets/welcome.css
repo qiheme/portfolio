@@ -1,2 +1,41 @@
+#welcome {
+  position: relative;
+  top: 50px;
+  height: 35%;
+  border-bottom-style: double;
+  border-bottom: thick dotted black;
+}
 
+#welcome h1 {
 
+}
+
+#welcome p {
+  font-family: 'Gloria Hallelujah', cursive;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+/*.stats {
+  margin: 30%;
+  width: 100%;
+  background-color: green;
+  position: relative;
+  top: 300px;
+  display: inline-block;
+}
+
+#about {
+  margin: 30%;
+  width: 50%;
+  display: block;
+  background-color: red;
+}
+
+#tech {
+  margin: 30%;
+  width: 50%;
+  display: block;
+  background-color: blue;
+}
+*/
