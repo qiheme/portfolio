@@ -1,4 +1,4 @@
-#welcome {
+/*#welcome {
   position: relative;
   top: 50px;
   height: 35%;
@@ -16,7 +16,7 @@
   padding-right: 30px;
 }
 
-/*.stats {
+.stats {
   margin: 30%;
   width: 100%;
   background-color: green;
@@ -38,4 +38,5 @@
   display: block;
   background-color: blue;
 }
+
 */

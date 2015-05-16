@@ -2,7 +2,6 @@ development:
   adapter: postgresql
   encoding: utf8
   database: Quincy_development
-  username: Quincy_Iheme
   pool: 5
   timeout: 5000
 
@@ -13,7 +12,6 @@ test:
   adapter: postgresql
   encoding: utf8
   database: Quincy_test
-  username: Quincy_Iheme
   pool: 5
   timeout: 5000
 
@@ -21,6 +19,5 @@ production:
   adapter: postgresql
   encoding: utf8
   database: Quincy_production
-  username: Quincy_Iheme
   pool: 5
   timeout: 5000

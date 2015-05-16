@@ -8,18 +8,18 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <div id="nav-bar">
-      <ul>
-        <%= link_to 'Home', root_path %>
-        About Portfolio Contact
+    <header>
+      <ul id="name">
+        <li>Quincy Iheme</li>
       </ul>
-    </div>
+
+      <ul id="menu">
+        <li><%= link_to 'Home', root_path %></li>
+        <li><%= link_to 'About', root_path %></li>
+        <li><%= link_to 'Portfolio', root_path %></li>
+        <li><%= link_to 'Contact', root_path %></li>
+      </ul>
+    </header>
     <%= yield %>
-    <div id="footer">
-      <ul>
-        Website developed by Quincy Iheme
-        <a href="mailto:qiheme@gmail.com">Email</a>
-      </ul>
-    </div>
   </body>
 </html>

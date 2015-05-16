@@ -13,42 +13,33 @@
  */
 
 body {
-  background-image: url(http://turbo.designwoop.com/uploads/2012/03/01_free_subtle_textures_apple_ios_linen_texture.jpg);
+  background-color: #fdfdfd;
   background-size: 100%;
   margin: 0px;
   padding: 0px;
-  color: white;
-  font-family: 'Gloria Hallelujah', cursive;
 }
 
-#nav-bar {
-  width: 100%;
-  height: 5%;
-  position: fixed;
-  top: 0px;
-  background-color: #2E2EFE;
-  font-size: 20px;
-  vertical-align: center;
-  border-radius: 0px 0px 20px 20px;
-  z-index: 1;
-
+header {
+  margin: auto;
+  width: 80%;
+  height: 50px;
+  position: relative;
+  border-bottom: 1px solid #8E8E8E;
 }
 
-#nav-bar ul {
+header ul#name {
+  float: left;
+  margin-left: -10%;
+  list-style-type: none;
+}
+
+header ul#menu {
   float: right;
-  padding: 0px 10px 0px 0px;
-  border: 0px;
-  margin: 0px;
+  margin-right: -10%;
+  list-style-type: none;
 }
 
-#footer {
-  position: fixed;
-  bottom: 10px;
-  text-align: center;
-  text-decoration-color: white;
-}
-
-#footer ul{
-  padding: 0px 0px 0px 10px;
-
+header li {
+  display: inline;
+  padding: 5px;
 }
