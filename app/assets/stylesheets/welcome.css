@@ -1,42 +1,16 @@
-#welcome {
- background-image: url(comp.jpg);
- background-size: 100% 1000px;
- background-repeat: no-repeat;
- height: 1000px;
- width: 100%;
-}
-
-/*#welcome h1 {
-
-}
-
-#welcome p {
-  font-family: 'Gloria Hallelujah', cursive;
-  padding-left: 30px;
-  padding-right: 30px;
-}
-
-.stats {
-  margin: 30%;
+div#welcome {
+  background-image: url(comp.jpg);
+  background-size: 100% 1000px;
+  background-repeat: no-repeat;
+  height: 650px;
   width: 100%;
-  background-color: green;
-  position: relative;
-  top: 300px;
-  display: inline-block;
 }
 
 #about {
-  margin: 30%;
-  width: 50%;
-  display: block;
-  background-color: red;
+  position: relative;
+  font-size: 30px; 
+  font-weight: bold;
+  color: white;
+  top: 100px;
+  right: -60px;
 }
-
-#tech {
-  margin: 30%;
-  width: 50%;
-  display: block;
-  background-color: blue;
-}
-
-*/
