@@ -1,12 +1,12 @@
-/*#welcome {
-  position: relative;
-  top: 50px;
-  height: 35%;
-  border-bottom-style: double;
-  border-bottom: thick dotted black;
+#welcome {
+ background-image: url(comp.jpg);
+ background-size: 100% 1000px;
+ background-repeat: no-repeat;
+ height: 1000px;
+ width: 100%;
 }
 
-#welcome h1 {
+/*#welcome h1 {
 
 }
 

@@ -10,16 +10,17 @@
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
+/db/schema.rb
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
-
-# Ignore Gemfile.lock
-Gemfile.lock
 
 # Ignore database.yml
 config/database.yml
 
 # Ignore ruby version
 .ruby-version
+
+# Ignore hidden files
+.*
