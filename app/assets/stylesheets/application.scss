@@ -8,41 +8,13 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
+ *= require animate.min
+ *= require bootstrap
+ *= require bootstrap.min
+ *= require creative
  *= require_self
  *= require_tree .
  */
 
-body {
-  background-color: #fdfdfd;
-  background-size: 100%;
-  font-family: 'Oswald', sans-serif;
-  margin: 0px;
-  padding: 0px;
-}
-
-header {
-  top: 0px;
-  width: 100%;
-  height: 9%;
-  position: fixed;
-  border-bottom: 1px solid #8E8E8E;
-  z-index: 1;
-  background-color: white;
-}
-
-header ul#name {
-  float: left;
-  margin-left: 2.5%;
-  list-style-type: none;
-}
-
-header ul#menu {
-  float: right;
-  margin-right: 2.5%;
-  list-style-type: none;
-}
-
-header li {
-  display: inline;
-  padding: 5px;
-}
+@import "font-awesome-sprockets";
+@import "font-awesome";

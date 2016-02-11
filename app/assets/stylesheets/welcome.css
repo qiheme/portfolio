@@ -1,16 +1,1 @@
-div#welcome {
-  background-image: url(comp.jpg);
-  background-size: 100% 1000px;
-  background-repeat: no-repeat;
-  height: 650px;
-  width: 100%;
-}
 
-#about {
-  position: relative;
-  font-size: 30px; 
-  font-weight: bold;
-  color: white;
-  top: 100px;
-  right: -60px;
-}
