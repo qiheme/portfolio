@@ -7,6 +7,10 @@ Quincy::Application.routes.draw do
 
   resources :welcome
 
+  get 'download/pdf'
+
+  # resources :documents
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
