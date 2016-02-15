@@ -32,3 +32,7 @@ group :doc do
 end
 
 gem 'font-awesome-sass'
+
+gem 'rails_12factor', group: :production
+
+gem 'puma'
