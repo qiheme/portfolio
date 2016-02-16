@@ -23,4 +23,4 @@ config/database.yml
 .ruby-version
 
 # Ignore hidden files
-.*
+.*.env

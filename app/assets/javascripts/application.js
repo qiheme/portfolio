@@ -12,5 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require classie
+//= require cbpAnimatedHeader
 //= require turbolinks
 //= require_tree .
