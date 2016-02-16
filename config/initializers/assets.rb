@@ -4,5 +4,6 @@ Rails.application.config.assets.precompile += [
 'jquery.easing.min.js',
 'jquery.fittext.js',
 'wow.min.js',
-'creative.js'
+'creative.js',
+'header.jpg'
 ]
