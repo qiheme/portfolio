@@ -1,12 +1,12 @@
 source 'https://rubygems.org'
 
-ruby '2.2.2'
+ruby '2.5.7'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.1'
+gem 'rails', '4.2.11.1'
 
 # Use pg as the database for Active Record
-gem 'pg'
+gem 'pg', '~> 0.20'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -33,6 +33,8 @@ end
 
 gem 'font-awesome-sass'
 
-gem 'rails_12factor', group: :production
-
 gem 'puma'
+
+gem 'bundler', '< 2.0'
+
+gem 'rails_12factor', group: :production

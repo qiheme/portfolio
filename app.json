@@ -4,13 +4,13 @@
   },
   "env": {
     "LANG": {
-      "required": true
+      "required": false
     },
     "RACK_ENV": {
-      "required": true
+      "required": false
     },
     "RAILS_ENV": {
-      "required": true
+      "required": false
     }
   },
   "addons": [
