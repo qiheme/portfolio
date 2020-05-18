@@ -68,7 +68,7 @@ GEM
     nio4r (2.5.2)
     nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
-    pg (1.2.3)
+    pg (0.21.0)
     puma (4.3.3)
       nio4r (~> 2.0)
     rack (1.6.13)
@@ -143,7 +143,7 @@ DEPENDENCIES
   font-awesome-sass
   jbuilder (~> 1.2)
   jquery-rails
-  pg
+  pg (~> 0.20)
   puma
   rails (= 4.2.11.1)
   rails_12factor
