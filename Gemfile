@@ -36,3 +36,5 @@ gem 'font-awesome-sass'
 gem 'puma'
 
 gem 'bundler', '< 2.0'
+
+gem 'rails_12factor', group: :production
