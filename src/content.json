@@ -1,0 +1,12 @@
+{
+  "home": {
+    "hero":
+    {
+      "description": "Quincy Iheme is a Engineering Leader focused on team-building and advancing careers with more than 8 years of industry experience.",
+      "primaryActionUrl": "#",
+      "primaryActionText": "Contact Quincy",
+      "secondaryActionUrl": "#",
+      "secondaryActionText": "Learn More"
+    }
+  }
+}
