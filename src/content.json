@@ -7,6 +7,11 @@
       "primaryActionText": "Contact Quincy",
       "secondaryActionUrl": "#",
       "secondaryActionText": "Learn More"
+    },
+    "features": {
+      "heading": "Focused on Personal and Professional Improvement",
+      "subheading": "",
+      "description": ""
     }
   }
 }
