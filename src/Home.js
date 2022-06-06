@@ -13,7 +13,9 @@ import Blog from "components/blogs/GridWithFeaturedPost.js";
 import Testimonial from "components/testimonials/TwoColumnWithImageAndRating.js";
 import FAQ from "components/faqs/SingleCol.js";
 import GetStarted from "components/cta/GetStartedLight.js";
-import Footer from "components/footers/FiveColumnWithInputForm.js";
+import Footer from "components/footers/MiniCenteredFooter.js";
+import MainFeatureTwo from "components/features/TwoColWithButton.js";
+import serverRedundancyIllustrationImageSrc from "images/server-redundancy-illustration.svg";
 
 import {NavLinks, NavLink as NavLinkBase} from "components/headers/light";
 
@@ -27,6 +29,8 @@ import SimpleIconImage from "images/simple-icon.svg";
 import GithubIconImage from "vendor/feather-icons/github.svg";
 import BriefcaseIcon from "vendor/feather-icons/briefcase.svg";
 import PersonIcon from "vendor/feather-icons/user.svg";
+
+import ContactUsForm from "components/forms/TwoColContactUsWithIllustrationFullForm.js";
 
 import Content from "./content.json";
 
@@ -95,51 +99,13 @@ export default () => {
     <AnimationRevealPage>
       <Hero {...heroProps} />
       <FeatureStats {...featureProps} />
-      <Features
-        heading={
-          <>
-            Amazing <HighlightedText>Features</HighlightedText>
-          </>
-        }
+      <MainFeatureTwo
+        {...Content["home"]["featuresTwo"]}
+        imageSrc={serverRedundancyIllustrationImageSrc}
+        buttonRounded={false}
+        textOnLeft={false}
       />
-      <MainFeature
-        heading={
-          <>
-            Cloud built by and for{" "}
-            <HighlightedText>Professionals</HighlightedText>
-          </>
-        }
-      />
-      <Testimonial
-        heading={
-          <>
-            Our Clients <HighlightedText>Love Us</HighlightedText>
-          </>
-        }
-      />
-      <Pricing
-        heading={
-          <>
-            Flexible <HighlightedText>Plans</HighlightedText>
-          </>
-        }
-      />
-      <FAQ
-        heading={
-          <>
-            Any <HighlightedText>Questions ?</HighlightedText>
-          </>
-        }
-      />
-      <Blog
-        subheading="Blog"
-        heading={
-          <>
-            We love <HighlightedText>Writing</HighlightedText>
-          </>
-        }
-      />
-      <GetStarted />
+      <ContactUsForm />
       <Footer />
     </AnimationRevealPage>
   );
