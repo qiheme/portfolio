@@ -1,36 +1,22 @@
 import React from "react";
 import tw from "twin.macro";
-import {css} from "styled-components/macro"; //eslint-disable-line
-import AnimationRevealPage from "helpers/AnimationRevealPage.js";
-import styled from "styled-components";
 
-import Hero from "components/hero/FullWidthWithImage.js";
-import Features from "components/features/ThreeColWithSideImage.js";
-import MainFeature from "components/features/TwoColWithTwoHorizontalFeaturesAndButton.js";
-import FeatureStats from "components/features/ThreeColWithSideImageWithPrimaryBackground.js";
-import Pricing from "components/pricing/TwoPlansWithDurationSwitcher.js";
-import Blog from "components/blogs/GridWithFeaturedPost.js";
-import Testimonial from "components/testimonials/TwoColumnWithImageAndRating.js";
-import FAQ from "components/faqs/SingleCol.js";
-import GetStarted from "components/cta/GetStartedLight.js";
-import Footer from "components/footers/MiniCenteredFooter.js";
-import MainFeatureTwo from "components/features/TwoColWithButton.js";
-import serverRedundancyIllustrationImageSrc from "images/server-redundancy-illustration.svg";
+import Hero from "vendor/treact/components/hero/FullWidthWithImage.js";
+import FeatureStats from "vendor/treact/components/features/ThreeColWithSideImageWithPrimaryBackground.js";
+import Footer from "vendor/treact/components/footers/MiniCenteredFooter.js";
+import MainFeatureTwo from "vendor/treact/components/features/TwoColWithButton.js";
+import ContactUsForm from "vendor/treact/components/forms/TwoColContactUsWithIllustrationFullForm.js";
 
-import {NavLinks, NavLink as NavLinkBase} from "components/headers/light";
+import serverRedundancyIllustrationImageSrc from "vendor/treact/images/server-redundancy-illustration.svg";
 
-import SupportIconImage from "images/support-icon.svg";
-import ShieldIconImage from "images/shield-icon.svg";
-import CustomizeIconImage from "images/customize-icon.svg";
-import FastIconImage from "images/fast-icon.svg";
-import ReliableIconImage from "images/reliable-icon.svg";
-import SimpleIconImage from "images/simple-icon.svg";
+import {
+  NavLinks,
+  NavLink as NavLinkBase,
+} from "vendor/treact/components/headers/light";
 
 import GithubIconImage from "vendor/feather-icons/github.svg";
 import BriefcaseIcon from "vendor/feather-icons/briefcase.svg";
 import PersonIcon from "vendor/feather-icons/user.svg";
-
-import ContactUsForm from "components/forms/TwoColContactUsWithIllustrationFullForm.js";
 
 import Content from "./content.json";
 
@@ -96,7 +82,7 @@ const featureProps = {cards, ...Content["home"]["features"]};
 
 export default () => {
   return (
-    <AnimationRevealPage>
+    <div>
       <Hero {...heroProps} />
       <FeatureStats {...featureProps} />
       <MainFeatureTwo
@@ -107,6 +93,6 @@ export default () => {
       />
       <ContactUsForm />
       <Footer />
-    </AnimationRevealPage>
+    </div>
   );
 };

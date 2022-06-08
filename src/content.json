@@ -6,7 +6,8 @@
       "primaryActionUrl": "#",
       "primaryActionText": "Contact Quincy",
       "secondaryActionUrl": "#",
-      "secondaryActionText": "Learn More"
+      "secondaryActionText": "Learn More",
+      "imageURL": "https://raw.githubusercontent.com/qiheme/headshots/master/IMG_8810.JPG"
     },
     "features": {
       "heading": "Focused on Personal and Professional Improvement",
