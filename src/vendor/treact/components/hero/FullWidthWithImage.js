@@ -68,12 +68,17 @@ export default ({
   secondaryActionUrl = "#",
   secondaryActionText = "Search Hotels",
   imageURL = "https://images.unsplash.com/photo-1551918120-9739cb430c6d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&width=1440&height=1024&q=75",
+  logoLink = "https://raw.githubusercontent.com/qiheme/headshots/master/icon.jpg",
 }) => {
   return (
     <Container>
       <TwoColumn>
         <LeftColumn>
-          <StyledHeader links={navLinks} collapseBreakpointClass="sm" />
+          <StyledHeader
+            logoLink={logoLink}
+            links={navLinks}
+            collapseBreakpointClass="sm"
+          />
           <Content>
             <Heading>{heading}</Heading>
             <Paragraph>{description}</Paragraph>

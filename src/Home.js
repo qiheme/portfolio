@@ -1,13 +1,12 @@
 import React from "react";
 import tw from "twin.macro";
+import styled from "styled-components";
 
 import Hero from "vendor/treact/components/hero/FullWidthWithImage.js";
 import FeatureStats from "vendor/treact/components/features/ThreeColWithSideImageWithPrimaryBackground.js";
 import Footer from "vendor/treact/components/footers/MiniCenteredFooter.js";
 import MainFeatureTwo from "vendor/treact/components/features/TwoColWithButton.js";
 import ContactUsForm from "vendor/treact/components/forms/TwoColContactUsWithIllustrationFullForm.js";
-
-import serverRedundancyIllustrationImageSrc from "vendor/treact/images/server-redundancy-illustration.svg";
 
 import {
   NavLinks,
@@ -25,12 +24,27 @@ const NavLink = tw(NavLinkBase)`
   sm:text-sm sm:mx-6
 `;
 
+export const LogoLink = styled(NavLink)`
+  ${tw`flex items-center font-black border-b-0 text-2xl! ml-0!`};
+
+  img {
+    ${tw`w-10 mr-3`}
+  }
+`;
+
+const logoLink = (
+  <LogoLink href="/">
+    <img
+      src={"https://raw.githubusercontent.com/qiheme/headshots/master/icon.jpg"}
+      alt="logo"
+    />
+  </LogoLink>
+);
+
 const navLinks = [
   <NavLinks key={1}>
     <NavLink href="#">About</NavLink>
     <NavLink href="#">Blog</NavLink>
-    <NavLink href="#">Pricing</NavLink>
-    <NavLink href="#">Login</NavLink>
   </NavLinks>,
 ];
 
@@ -43,7 +57,12 @@ const heading = (
   </>
 );
 
-const heroProps = {navLinks, heading, ...Content["home"]["hero"]};
+const heroProps = {
+  navLinks,
+  heading,
+  logoLink: logoLink,
+  ...Content["home"]["hero"],
+};
 
 const cards = [
   {
@@ -80,19 +99,30 @@ const cards = [
 
 const featureProps = {cards, ...Content["home"]["features"]};
 
+const contactHeading = (
+  <>
+    Feel free to <span tw="text-primary-500">get in touch</span>
+    <wbr /> with me.
+  </>
+);
+
+const StyledDiv = tw.div`font-display min-h-screen text-secondary-500 p-8 overflow-hidden`;
+
 export default () => {
   return (
-    <div>
+    <StyledDiv className="App">
       <Hero {...heroProps} />
       <FeatureStats {...featureProps} />
       <MainFeatureTwo
         {...Content["home"]["featuresTwo"]}
-        imageSrc={serverRedundancyIllustrationImageSrc}
         buttonRounded={false}
         textOnLeft={false}
       />
-      <ContactUsForm />
+      <ContactUsForm
+        heading={contactHeading}
+        {...Content["home"]["contactForm"]}
+      />
       <Footer />
-    </div>
+    </StyledDiv>
   );
 };
