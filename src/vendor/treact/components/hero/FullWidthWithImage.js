@@ -82,14 +82,14 @@ export default ({
           <Content>
             <Heading>{heading}</Heading>
             <Paragraph>{description}</Paragraph>
-            <Actions>
+            {/* <Actions>
               <a href={primaryActionUrl} className="action primaryAction">
                 {primaryActionText}
               </a>
               <a href={secondaryActionUrl} className="action secondaryAction">
                 {secondaryActionText}
               </a>
-            </Actions>
+            </Actions> */}
           </Content>
         </LeftColumn>
         <RightColumn imageURL={imageURL}></RightColumn>
