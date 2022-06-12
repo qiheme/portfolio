@@ -1,0 +1,32 @@
+{
+  "home": {
+    "hero":
+    {
+      "description": "Hello! My name is Quincy Iheme and I am an Engineering Leader focused on team-building and advancing careers with more than 8 years of industry experience.",
+      "primaryActionUrl": "#",
+      "primaryActionText": "Contact Quincy",
+      "secondaryActionUrl": "#",
+      "secondaryActionText": "Learn More",
+      "imageURL": "https://raw.githubusercontent.com/qiheme/headshots/master/IMG_8810.JPG"
+    },
+    "features": {
+      "heading": "Focused on Personal and Professional Improvement",
+      "subheading": "",
+      "description": ""
+    },
+    "featuresTwo": {
+      "subheading": "",
+      "heading": "Relaying Experiences to the Technology Community",
+      "description": "I spend my time at both internal and external events speaking about my experiences in the technology industry, and how we can all work together for the better.",
+      "imageSrc": "https://raw.githubusercontent.com/qiheme/headshots/master/3W1A9022.jpeg"
+    },
+    "contactForm": {
+      "subheading": "Contact Quincy",
+      "description": "Use the below form to send a message to me. I'll get back to you shortly!",
+      "submitButtonText": "Send",
+      "formAction": "#",
+      "formMethod": "get",
+      "textOnLeft": true
+    }
+  }
+}
