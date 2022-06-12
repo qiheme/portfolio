@@ -32,18 +32,18 @@ const Content = tw.div`mt-24 lg:mt-24 lg:mb-24 flex flex-col sm:items-center lg:
 const Heading = tw.h1`text-3xl sm:text-5xl md:text-6xl lg:text-5xl font-black leading-none`;
 const Paragraph = tw.p`max-w-md my-8 lg:my-5 lg:my-8 sm:text-lg lg:text-base xl:text-lg leading-loose`;
 
-const Actions = styled.div`
-  ${tw`mb-8 lg:mb-0`}
-  .action {
-    ${tw`text-center inline-block w-full sm:w-48 py-4 font-semibold tracking-wide rounded hocus:outline-none focus:shadow-outline transition duration-300`}
-  }
-  .primaryAction {
-    ${tw`bg-primary-500 text-gray-100 hover:bg-primary-700`}
-  }
-  .secondaryAction {
-    ${tw`mt-4 sm:mt-0 sm:ml-4 bg-gray-300 text-gray-700 hover:bg-gray-400 hover:text-gray-800`}
-  }
-`;
+// const Actions = styled.div`
+//   ${tw`mb-8 lg:mb-0`}
+//   .action {
+//     ${tw`text-center inline-block w-full sm:w-48 py-4 font-semibold tracking-wide rounded hocus:outline-none focus:shadow-outline transition duration-300`}
+//   }
+//   .primaryAction {
+//     ${tw`bg-primary-500 text-gray-100 hover:bg-primary-700`}
+//   }
+//   .secondaryAction {
+//     ${tw`mt-4 sm:mt-0 sm:ml-4 bg-gray-300 text-gray-700 hover:bg-gray-400 hover:text-gray-800`}
+//   }
+// `;
 
 export default ({
   navLinks = [
