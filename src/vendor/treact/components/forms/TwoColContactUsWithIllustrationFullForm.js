@@ -40,6 +40,23 @@ const Textarea = styled(Input).attrs({as: "textarea"})`
 
 const SubmitButton = tw(PrimaryButtonBase)`inline-block mt-8`;
 
+const handleSubmit = (event) => {
+  event.preventDefault();
+  const {
+    email: emailInput,
+    name: nameInput,
+    subject: subjectInput,
+    body: bodyInput,
+  } = event.target;
+  const {value: email} = emailInput;
+  const {value: name} = nameInput;
+  const {value: subject} = subjectInput;
+  const {value: body} = bodyInput;
+
+  const emailBody = `${name} from ${email} has a message:%0A%0A${body}`;
+  window.location = `mailto:contact@quincyihe.me?subject=${subject}&body=${emailBody}`;
+};
+
 export default ({
   subheading = "Contact Us",
   heading = (
@@ -67,7 +84,7 @@ export default ({
             {subheading && <Subheading>{subheading}</Subheading>}
             <Heading>{heading}</Heading>
             {description && <Description>{description}</Description>}
-            <Form action={formAction} method={formMethod}>
+            <Form onSubmit={handleSubmit}>
               <Input
                 type="email"
                 name="email"
@@ -75,7 +92,7 @@ export default ({
               />
               <Input type="text" name="name" placeholder="Full Name" />
               <Input type="text" name="subject" placeholder="Subject" />
-              <Textarea name="message" placeholder="Your Message Here" />
+              <Textarea name="body" placeholder="Your Message Here" />
               <SubmitButton type="submit">{submitButtonText}</SubmitButton>
             </Form>
           </TextContent>

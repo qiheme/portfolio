@@ -43,7 +43,7 @@ export const initialState = {
       description:
         "Use the below form to send a message to me. I'll get back to you shortly!",
       submitButtonText: "Send",
-      formAction: "#",
+      formAction: "mailto:contact@quincyihe.me",
       formMethod: "get",
       textOnLeft: true,
       heading: contactHeading,
