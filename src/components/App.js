@@ -2,7 +2,7 @@ import "tailwindcss/dist/base.css";
 import "vendor/treact/styles/globalStyles.css";
 import React from "react";
 
-import MainLandingPage from "Home.js";
+import MainLandingPage from "./pages/Home.js";
 
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 
