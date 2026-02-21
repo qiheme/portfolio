@@ -1,0 +1,48 @@
+---
+interface Props {
+  logoSrc: string;
+  heading: string;
+  highlightedText: string;
+  description: string;
+  imageSrc: string;
+}
+
+const { logoSrc, heading, highlightedText, description, imageSrc } = Astro.props;
+---
+
+<div class="relative -mx-8 -mt-8">
+  <div class="flex flex-col lg:flex-row bg-gray-100">
+    <!-- Left Column -->
+    <div class="ml-8 mr-8 xl:pl-10 py-8">
+      <!-- Header -->
+      <header class="flex justify-between items-center max-w-screen-xl mx-auto">
+        <a href="/" class="flex items-center font-black text-2xl border-b-0">
+          <img src={logoSrc} alt="logo" class="w-10 mr-3 rounded-full" />
+        </a>
+        <nav class="hidden sm:flex items-center">
+          <!-- Navigation links can be added here -->
+        </nav>
+      </header>
+
+      <!-- Content -->
+      <div class="mt-24 lg:mt-24 lg:mb-24 flex flex-col sm:items-center lg:items-stretch">
+        <h1 class="text-3xl sm:text-5xl md:text-6xl lg:text-5xl font-black leading-none">
+          {heading}
+          <wbr />
+          <br />
+          <span class="text-primary-500">{highlightedText}</span>
+        </h1>
+        <p class="max-w-md my-8 lg:my-5 lg:my-8 sm:text-lg lg:text-base xl:text-lg leading-loose">
+          {description}
+        </p>
+      </div>
+    </div>
+
+    <!-- Right Column - Image -->
+    <div
+      class="bg-cover bg-center h-96 lg:h-auto lg:w-1/2 lg:flex-1"
+      style={`background-image: url('${imageSrc}');`}
+    >
+    </div>
+  </div>
+</div>

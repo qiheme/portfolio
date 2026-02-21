@@ -1,0 +1,69 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import Features from '../components/Features.astro';
+import FeatureTwo from '../components/FeatureTwo.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Footer from '../components/Footer.astro';
+
+const featureCards = [
+  {
+    icon: 'github',
+    title: 'Engineering Focused People Leader',
+    description: 'Focused on contributing to web applications and leading engineering teams for a Fortune 30 company',
+  },
+  {
+    icon: 'briefcase',
+    title: 'EdTech Professional',
+    description: '5+ years instructing and mentoring professionals in their career change journey',
+  },
+  {
+    icon: 'user',
+    title: 'Community Champion',
+    description: 'Volunteering at various organizations devoted towards improving equity within the technology industry',
+  },
+  {
+    icon: 'mic',
+    title: 'Conference Speaker',
+    description: 'Speaking at conferences with a focus on the technology industry and people leadership',
+  },
+  {
+    icon: 'zap',
+    title: 'Freelance Developer',
+    description: 'Supporting small businesses who seek to digitally engage their customers with highly performant websites',
+  },
+];
+---
+
+<Layout title="Quincy Iheme">
+  <Hero
+    logoSrc="https://raw.githubusercontent.com/qiheme/headshots/master/icon.jpg"
+    heading="Engineer, Leader,"
+    highlightedText="Instructor, Speaker."
+    description="Hello! My name is Quincy Iheme and I am an Engineering Leader focused on team-building and advancing careers with more than 8 years of industry experience."
+    imageSrc="https://raw.githubusercontent.com/qiheme/headshots/master/IMG_8810.JPG"
+  />
+
+  <Features
+    heading="Focused on Personal and Professional Improvement"
+    cards={featureCards}
+  />
+
+  <FeatureTwo
+    heading="Relaying Experiences to the Technology Community"
+    description="I spend my time at both internal and external events speaking about my experiences in the technology industry, and how we can all work together for the better."
+    imageSrc="https://raw.githubusercontent.com/qiheme/headshots/master/3W1A9022.jpeg"
+    textOnLeft={false}
+  />
+
+  <ContactForm
+    subheading="Contact Quincy"
+    heading="Feel free to"
+    highlightedText="get in touch"
+    description="Use the below form to send a message to me. I'll get back to you shortly!"
+    submitButtonText="Send"
+    textOnLeft={true}
+  />
+
+  <Footer />
+</Layout>

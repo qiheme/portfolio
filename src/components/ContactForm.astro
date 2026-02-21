@@ -1,0 +1,102 @@
+---
+interface Props {
+  subheading: string;
+  heading: string;
+  highlightedText: string;
+  description: string;
+  submitButtonText: string;
+  textOnLeft?: boolean;
+}
+
+const { subheading, heading, highlightedText, description, submitButtonText, textOnLeft = true } = Astro.props;
+---
+
+<div class="relative">
+  <div class="flex flex-col md:flex-row justify-between max-w-screen-xl mx-auto py-20 md:py-24">
+    <!-- Image Column -->
+    <div class="w-full max-w-md mx-auto md:max-w-none md:mx-0 md:w-5/12 flex-shrink-0 h-80 md:h-auto">
+      <div
+        class="rounded bg-contain bg-no-repeat bg-center h-full"
+        style="background-image: url('data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 500 500%27%3E%3Cpath fill=%27%236415ff%27 opacity=%27.1%27 d=%27M453.6 153c30 51.8 38 113.8 22 169.9-16 56.2-56 106.5-108.5 132.5-52.5 26-117.5 27.7-173.2 6.7-55.7-21-102.1-64.7-129.2-118.5-27.1-53.8-35-117.7-14.6-172.2C70.5 116.9 119 71.9 177.5 45c58.5-26.9 127-35.7 183 1.2 56 36.9 99.6 89 93.1 106.8z%27/%3E%3Cg fill=%27%236415ff%27%3E%3Cpath d=%27M173.5 378.5h153v15h-153z%27/%3E%3Cpath d=%27M167 371h166v5H167z%27/%3E%3C/g%3E%3Cpath fill=%27%233f3d56%27 d=%27M168 378.5h152v57H168z%27/%3E%3Cpath opacity=%27.1%27 d=%27M168 378.5h152v57H168z%27/%3E%3Cellipse cx=%27244%27 cy=%27407%27 rx=%2720%27 ry=%275%27 fill=%27%236415ff%27/%3E%3Cpath fill=%27%23f2f2f2%27 d=%27M168 378.5h152v5H168z%27/%3E%3Cpath fill=%27%233f3d56%27 d=%27M119 158h262v215H119z%27/%3E%3Cpath fill=%27%236415ff%27 d=%27M134 173h232v170H134z%27/%3E%3Ccircle cx=%27250%27 cy=%27360%27 r=%278%27 fill=%27%23f2f2f2%27/%3E%3Cpath fill=%27%23f2f2f2%27 d=%27M209 218h82v8h-82z%27/%3E%3Cpath fill=%27%23fff%27 d=%27M172 248h156v8H172zM172 268h156v8H172zM172 288h156v8H172z%27/%3E%3C/svg%3E');"
+      >
+      </div>
+    </div>
+
+    <!-- Text Column -->
+    <div
+      class:list={[
+        "w-full max-w-md mx-auto md:max-w-none md:mx-0 md:w-7/12 mt-16 md:mt-0",
+        textOnLeft ? "md:mr-12 lg:mr-16 md:order-first" : "md:ml-12 lg:ml-16 md:order-last"
+      ]}
+    >
+      <div class="lg:py-8 text-center md:text-left">
+        {subheading && (
+          <span class="font-bold text-primary-500 text-center md:text-left">
+            {subheading}
+          </span>
+        )}
+        <h2 class="mt-4 font-black text-left text-3xl sm:text-4xl lg:text-5xl text-center md:text-left leading-tight">
+          {heading} <span class="text-primary-500">{highlightedText}</span> with me.
+        </h2>
+        {description && (
+          <p class="mt-4 text-center md:text-left text-sm md:text-base lg:text-lg font-medium leading-relaxed text-secondary-100">
+            {description}
+          </p>
+        )}
+
+        <form id="contact-form" class="mt-8 md:mt-10 text-sm flex flex-col max-w-sm mx-auto md:mx-0">
+          <input
+            type="email"
+            name="email"
+            placeholder="Your Email Address"
+            required
+            class="mt-6 first:mt-0 border-b-2 border-gray-300 py-3 focus:outline-none font-medium transition duration-300 focus:border-primary-500 bg-transparent"
+          />
+          <input
+            type="text"
+            name="name"
+            placeholder="Full Name"
+            required
+            class="mt-6 border-b-2 border-gray-300 py-3 focus:outline-none font-medium transition duration-300 focus:border-primary-500 bg-transparent"
+          />
+          <input
+            type="text"
+            name="subject"
+            placeholder="Subject"
+            required
+            class="mt-6 border-b-2 border-gray-300 py-3 focus:outline-none font-medium transition duration-300 focus:border-primary-500 bg-transparent"
+          />
+          <textarea
+            name="body"
+            placeholder="Your Message Here"
+            required
+            class="mt-6 border-b-2 border-gray-300 py-3 focus:outline-none font-medium transition duration-300 focus:border-primary-500 h-24 resize-none bg-transparent"
+          ></textarea>
+          <button
+            type="submit"
+            class="inline-block mt-8 px-8 py-3 font-bold rounded bg-primary-500 text-gray-100 hover:bg-primary-700 focus:shadow-outline focus:outline-none transition duration-300"
+          >
+            {submitButtonText}
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(form);
+    const email = formData.get('email') as string;
+    const name = formData.get('name') as string;
+    const subject = formData.get('subject') as string;
+    const body = formData.get('body') as string;
+
+    const emailBody = `${name} from ${email} has a message:\n\n${body}`;
+    window.location.href = `mailto:contact@quincyihe.me?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+  });
+</script>
