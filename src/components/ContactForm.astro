@@ -1,0 +1,103 @@
+---
+import { contactForm } from "../data/content";
+
+const textColumnPosition = contactForm.textOnLeft
+  ? "md:mr-12 lg:mr-16 md:order-first"
+  : "md:ml-12 lg:ml-16 md:order-last";
+
+const inputClass =
+  "mt-6 first:mt-0 border-b-2 py-3 focus:outline-none font-medium transition duration-300 hover:border-primary-500 focus:border-primary-500";
+---
+
+<div class="relative">
+  <div
+    class="flex flex-col md:flex-row justify-between max-w-[1280px] mx-auto py-20 md:py-24"
+  >
+    <div class="w-full max-w-md mx-auto md:max-w-none md:mx-0 md:w-5/12 flex-shrink-0 h-80 md:h-auto">
+      <div
+        class="rounded bg-contain bg-no-repeat bg-center h-full"
+        style={`background-image: url("${contactForm.illustration}");`}
+      >
+      </div>
+    </div>
+    <div
+      class={`w-full max-w-md mx-auto md:max-w-none md:mx-0 md:w-7/12 mt-16 md:mt-0 ${textColumnPosition}`}
+    >
+      <div class="lg:py-8 text-center md:text-left">
+        {
+          contactForm.subheading && (
+            <h5 class="font-bold text-primary-500 text-center md:text-left">
+              {contactForm.subheading}
+            </h5>
+          )
+        }
+        <h2
+          class="mt-4 font-black tracking-wide text-3xl sm:text-4xl lg:text-5xl text-center md:text-left leading-tight"
+        >
+          {contactForm.headingBefore}<span class="text-primary-500"
+            >{contactForm.headingHighlight}</span
+          >{contactForm.headingAfter}
+        </h2>
+        {
+          contactForm.description && (
+            <p class="mt-4 text-center md:text-left text-sm md:text-base lg:text-lg font-medium leading-relaxed text-secondary-100">
+              {contactForm.description}
+            </p>
+          )
+        }
+        <form
+          id="contact-form"
+          data-email={contactForm.email}
+          class="mt-8 md:mt-10 text-sm flex flex-col max-w-sm mx-auto md:mx-0"
+        >
+          <input
+            type="email"
+            name="email"
+            placeholder="Your Email Address"
+            class={inputClass}
+          />
+          <input
+            type="text"
+            name="name"
+            placeholder="Full Name"
+            class={inputClass}
+          />
+          <input
+            type="text"
+            name="subject"
+            placeholder="Subject"
+            class={inputClass}
+          />
+          <textarea
+            name="body"
+            placeholder="Your Message Here"
+            class={`${inputClass} h-24`}></textarea>
+          <button
+            type="submit"
+            class="px-8 py-3 font-bold rounded bg-primary-500 text-gray-100 hover:bg-primary-700 hover:text-gray-200 focus:outline-none focus:shadow-[0_0_0_3px_rgba(66,153,225,0.5)] transition duration-300 inline-block mt-8"
+          >
+            {contactForm.submitButtonText}
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Mirrors the original treact handleSubmit: builds a mailto: link from the
+  // form fields and navigates to it.
+  const form = document.getElementById("contact-form") as HTMLFormElement | null;
+  form?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const target = form.dataset.email ?? "";
+    const data = new FormData(form);
+    const email = String(data.get("email") ?? "");
+    const name = String(data.get("name") ?? "");
+    const subject = String(data.get("subject") ?? "");
+    const body = String(data.get("body") ?? "");
+
+    const emailBody = `${name} from ${email} has a message:%0A%0A${body}`;
+    window.location.href = `mailto:${target}?subject=${subject}&body=${emailBody}`;
+  });
+</script>
