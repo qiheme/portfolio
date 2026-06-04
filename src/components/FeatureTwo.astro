@@ -1,0 +1,42 @@
+---
+import { featuresTwo } from "../data/content";
+
+const textColumnPosition = featuresTwo.textOnLeft
+  ? "md:mr-12 lg:mr-16 md:order-first"
+  : "md:ml-12 lg:ml-16 md:order-last";
+---
+
+<div class="relative">
+  <div
+    class="flex flex-col md:flex-row justify-between max-w-[1280px] mx-auto py-20 md:py-24 items-center"
+  >
+    <div
+      class="w-full max-w-md mx-auto md:max-w-none md:mx-0 md:w-6/12 flex-shrink-0 relative"
+    >
+      <img src={featuresTwo.imageSrc} alt="" class="rounded" />
+    </div>
+    <div
+      class={`w-full max-w-md mx-auto md:max-w-none md:mx-0 md:w-6/12 mt-16 md:mt-0 ${textColumnPosition}`}
+    >
+      <div class="lg:py-8 text-center md:text-left">
+        {
+          featuresTwo.subheading && (
+            <h5 class="font-bold text-primary-500 text-center md:text-left">
+              {featuresTwo.subheading}
+            </h5>
+          )
+        }
+        <h2
+          class="mt-4 font-black tracking-wide text-3xl sm:text-4xl lg:text-5xl text-center md:text-left leading-tight"
+        >
+          {featuresTwo.heading}
+        </h2>
+        <p
+          class="mt-4 text-center md:text-left text-sm md:text-base lg:text-lg font-medium leading-relaxed text-secondary-100"
+        >
+          {featuresTwo.description}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

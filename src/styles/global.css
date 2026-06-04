@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+/*
+ * Custom theme ported from the previous Tailwind v2 config (src/tailwind.config.js).
+ * Only the bespoke values are declared here; grays and other standard palettes
+ * use Tailwind v4 defaults, which match the old custom values.
+ */
+@theme {
+  --font-display: "Inter", system-ui, sans-serif;
+
+  --color-primary-100: #a273ff;
+  --color-primary-200: #935bff;
+  --color-primary-300: #8344ff;
+  --color-primary-400: #742cff;
+  --color-primary-500: #6415ff;
+  --color-primary-600: #5a13e6;
+  --color-primary-700: #5011cc;
+  --color-primary-800: #460fb3;
+  --color-primary-900: #3c0d99;
+
+  --color-secondary-100: #7c8ba1;
+  --color-secondary-200: #667892;
+  --color-secondary-300: #506582;
+  --color-secondary-400: #3a5173;
+  --color-secondary-500: #243e63;
+  --color-secondary-600: #203859;
+  --color-secondary-700: #1d324f;
+  --color-secondary-800: #192b45;
+  --color-secondary-900: #16253b;
+}
+
+/*
+ * The old Tailwind v2 config defaulted un-themed borders to gray-300. Tailwind v4
+ * defaults to currentColor, so restore the previous behaviour for things like the
+ * contact form's underlined inputs.
+ */
+@layer base {
+  *,
+  ::after,
+  ::before {
+    border-color: var(--color-gray-300, currentColor);
+  }
+}

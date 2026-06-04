@@ -1,0 +1,42 @@
+---
+import { hero } from "../data/content";
+---
+
+<div class="relative -mx-8 -mt-8">
+  <div class="flex flex-col lg:flex-row bg-gray-100">
+    <div class="ml-8 mr-8 xl:pl-10 py-8">
+      <header
+        class="flex justify-between items-center max-w-[1280px] mx-auto"
+      >
+        <a
+          href="/"
+          class="flex items-center font-black border-b-0 text-2xl ml-0 mr-8 pb-0"
+        >
+          <img src={hero.logoURL} alt="logo" class="w-10 mr-3" />
+        </a>
+      </header>
+
+      <div
+        class="mt-24 lg:mt-24 lg:mb-24 flex flex-col sm:items-center lg:items-stretch"
+      >
+        <h1
+          class="text-3xl sm:text-5xl md:text-6xl lg:text-5xl font-black leading-none"
+        >
+          {hero.headingLine1}<br />
+          <span class="text-primary-500">{hero.headingHighlight}</span>
+        </h1>
+        <p
+          class="max-w-md my-8 lg:my-5 lg:my-8 sm:text-lg lg:text-base xl:text-lg leading-loose"
+        >
+          {hero.description}
+        </p>
+      </div>
+    </div>
+
+    <div
+      class="bg-green-500 bg-cover bg-center xl:ml-24 h-96 lg:h-auto lg:w-1/2 lg:flex-1"
+      style={`background-image: url("${hero.imageURL}");`}
+    >
+    </div>
+  </div>
+</div>
