@@ -11,5 +11,11 @@ export default defineConfig({
   integrations: [react()],
   vite: {
     plugins: [tailwindcss()],
+    ssr: {
+      // @q-labs/cobalt ships internal .css imports that Node's ESM loader
+      // can't handle during SSR/static rendering. Bundling it through Vite
+      // lets Vite process those CSS imports instead.
+      noExternal: ["@q-labs/cobalt"],
+    },
   },
 });
