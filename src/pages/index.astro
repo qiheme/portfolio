@@ -5,9 +5,11 @@ import Features from "../components/Features.astro";
 import FeatureTwo from "../components/FeatureTwo.astro";
 import ContactForm from "../components/ContactForm.astro";
 import Footer from "../components/Footer.astro";
+import CobaltDemo from "../components/CobaltDemo.tsx";
 ---
 
 <Layout>
+  <CobaltDemo client:only="react" />
   <Hero />
   <Features />
   <FeatureTwo />
