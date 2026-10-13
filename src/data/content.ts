@@ -5,10 +5,16 @@
  */
 
 export const site = {
+  name: "Quincy Iheme",
+  jobTitle: "Senior Engineering Manager",
   title: "Quincy Iheme — Senior Engineering Manager",
   description:
     "Quincy Iheme leads engineering teams behind Xfinity.com's marketing and buyflow web apps and the shared component library other teams build on.",
   updated: "Oct 2026",
+  /* 1200×630 social card in public/; regenerate if the headline changes. */
+  ogImage: "/og-image.png",
+  ogImageAlt:
+    "Quincy Iheme, Senior Engineering Manager: Engineering ambition into operating rhythm.",
 };
 
 export const links = {
@@ -23,7 +29,6 @@ export const hero = {
   headlineLead: "Engineering ambition",
   headlineAccent: "into operating rhythm.",
   bio: "I lead three teams, about 18 engineers, behind Xfinity.com's marketing and buyflow web apps and the shared component library other teams build on. From SDET to senior engineering manager over 12 years, I've learned the job is turning big goals into a rhythm teams can ship on: clear ownership, steady releases, and engineers growing into leads.",
-  image: "/headshot.jpg",
 };
 
 export const stats = [
