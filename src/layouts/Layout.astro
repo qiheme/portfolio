@@ -8,6 +8,8 @@ interface Props {
 }
 
 const { title = site.title, description = site.description } = Astro.props;
+// Open Graph consumers (LinkedIn, Slack) need a fully qualified image URL.
+const ogImage = new URL(hero.image, Astro.site).href;
 ---
 
 <!doctype html>
@@ -23,7 +25,7 @@ const { title = site.title, description = site.description } = Astro.props;
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={hero.image} />
+    <meta property="og:image" content={ogImage} />
     <meta name="twitter:card" content="summary" />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
