@@ -1,0 +1,81 @@
+/*
+ * Quincy OS Design System v1.1 — tokens (dark mode, the system default).
+ * Ported from the design system's colors_and_type.css. Fonts load in Layout.astro.
+ */
+
+:root {
+  /* Primitives */
+  --black-400: #6b7283;
+  --black-700: #1a1e28;
+  --black-800: #111318;
+  --black-900: #080a0f;
+  --black-950: #040508;
+
+  --cobalt-300: #60a5fa;
+  --cobalt-400: #3b82f6;
+  --cobalt-500: #2563eb;
+  --cobalt-600: #1d4ed8;
+
+  --crimson-400: #f84b4b;
+  --crimson-500: #ef2222;
+
+  /* Surfaces */
+  --bg-base: var(--black-950);
+  --bg-surface: var(--black-900);
+  --bg-raised: var(--black-800);
+  --bg-overlay: var(--black-700);
+
+  /* Borders */
+  --border-subtle: rgba(255, 255, 255, 0.05);
+  --border-default: rgba(255, 255, 255, 0.09);
+  --border-strong: rgba(255, 255, 255, 0.15);
+
+  /* Text */
+  --text-primary: #eef0f5;
+  --text-secondary: #8b95a8;
+  --text-tertiary: #556070; /* decorative only: fails 4.5:1 for text */
+  --text-accent: var(--cobalt-400);
+
+  /* Interactive */
+  --accent-default: var(--cobalt-500);
+  --accent-hover: var(--cobalt-400);
+  --accent-pressed: var(--cobalt-600);
+  --accent-subtle: rgba(37, 99, 235, 0.12);
+
+  --status-active: #34d399;
+  --status-info: var(--cobalt-300);
+
+  /* Elevation */
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.6);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.45), 0 2px 4px rgba(0, 0, 0, 0.5);
+  --shadow-glow-cobalt: 0 0 24px rgba(37, 99, 235, 0.3);
+
+  /* Type */
+  --font-display: "Space Grotesk", "Helvetica Neue", sans-serif;
+  --font-body: "DM Sans", "Helvetica Neue", sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", monospace;
+
+  --tracking-tighter: -0.04em;
+  --tracking-tight: -0.02em;
+  --tracking-wide: 0.04em;
+  --tracking-wider: 0.08em;
+
+  /* Radius */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-full: 9999px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  /* Layout */
+  --page-max: 1080px;
+  --gutter: 40px;
+}
+
+@media (max-width: 640px) {
+  :root {
+    --gutter: 20px;
+  }
+}

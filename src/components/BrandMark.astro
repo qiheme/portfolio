@@ -1,0 +1,22 @@
+---
+/* Cloud129 2-color mark (Quincy OS v1.1): cobalt cloud + crimson prompt. */
+interface Props {
+  size?: number;
+}
+const { size = 24 } = Astro.props;
+---
+
+<svg width={size} height={size} viewBox="0 0 64 64" fill="none" aria-hidden="true">
+  <path
+    d="M20.5 45.5a11 11 0 0 1-1.6-21.9 14.5 14.5 0 0 1 27.4-2.6 10.5 10.5 0 0 1 1.2 25z"
+    stroke="#3B82F6"
+    stroke-width="5"
+    stroke-linejoin="round"></path>
+  <path
+    d="M25 28 30.2 33 25 38"
+    stroke="#EF2222"
+    stroke-width="4.2"
+    stroke-linecap="round"
+    stroke-linejoin="round"></path>
+  <rect x="32.2" y="35.2" width="7.6" height="3.5" rx="1.75" fill="#EF2222"></rect>
+</svg>

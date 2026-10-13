@@ -1,0 +1,80 @@
+---
+import { capabilities } from "../data/content";
+---
+
+<section id="capabilities" class="section container" aria-labelledby="cap-title">
+  <div class="section-header">
+    <h2 id="cap-title" class="section-title">Capability Stack</h2>
+    <span class="section-meta">what I bring to a team</span>
+  </div>
+
+  <div class="cap-grid">
+    {
+      capabilities.map((c) => (
+        <div class="cap-card">
+          <h3 class="cap-title">{c.title}</h3>
+          <ul class="cap-list">
+            {c.items.map((i) => (
+              <li>{i}</li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .cap-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .cap-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+    padding: 18px 20px;
+  }
+  .cap-title {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+  }
+  .cap-list {
+    list-style: none;
+    display: grid;
+    gap: 8px;
+  }
+  .cap-list li {
+    position: relative;
+    padding-left: 14px;
+    font-size: 14px;
+    line-height: 1.45;
+    color: var(--text-secondary);
+  }
+  .cap-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    width: 5px;
+    height: 5px;
+    border-radius: 1px;
+    background: var(--cobalt-500);
+  }
+  @media (max-width: 960px) {
+    .cap-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 520px) {
+    .cap-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

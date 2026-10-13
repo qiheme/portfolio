@@ -1,18 +1,23 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
 import Hero from "../components/Hero.astro";
-import Features from "../components/Features.astro";
-import FeatureTwo from "../components/FeatureTwo.astro";
-import ContactForm from "../components/ContactForm.astro";
+import Work from "../components/Work.astro";
+import Speaking from "../components/Speaking.astro";
+import Capabilities from "../components/Capabilities.astro";
+import Contact from "../components/Contact.astro";
 import Footer from "../components/Footer.astro";
-import CobaltDemo from "../components/CobaltDemo.tsx";
 ---
 
 <Layout>
-  <CobaltDemo client:only="react" />
-  <Hero />
-  <Features />
-  <FeatureTwo />
-  <ContactForm />
+  <div id="top"></div>
+  <Nav />
+  <main id="main">
+    <Hero />
+    <Work />
+    <Speaking />
+    <Capabilities />
+    <Contact />
+  </main>
   <Footer />
 </Layout>
