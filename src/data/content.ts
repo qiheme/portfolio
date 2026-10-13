@@ -1,93 +1,182 @@
 /*
- * Single source of truth for the site's content. Consolidates what used to live in
- * src/state.js plus the template files (heroComponents/featureComponents/contactComponents).
- * Plain data only — no JSX.
+ * All site copy lives here. Every claim traces to Quincy's master resume or
+ * career context pool (Notion). Keep internal Comcast business metrics
+ * (orders, revenue) OFF this public site — they belong on the resume only.
  */
 
-export const hero = {
-  // Heading is split so the second line can be highlighted in the primary color.
-  headingLine1: "Engineer, Leader,",
-  headingHighlight: "Instructor, Speaker.",
-  description:
-    "Hello! My name is Quincy Iheme and I am an Engineering Leader focused on team-building and advancing careers with more than 8 years of industry experience.",
-  imageURL:
-    "https://raw.githubusercontent.com/qiheme/headshots/master/IMG_8810.JPG",
-  logoURL:
-    "https://raw.githubusercontent.com/qiheme/headshots/master/icon.jpg",
-};
-
-export const features = {
-  heading: "Focused on Personal and Professional Improvement",
-  subheading: "",
-  description: "",
-  cards: [
-    {
-      icon: "/icons/github.svg",
-      title: "Engineering Focused People Leader",
-      description:
-        "Focused on contributing to web applications and leading engineering teams for a Fortune 30 company",
-    },
-    {
-      icon: "/icons/briefcase.svg",
-      title: "EdTech Professional",
-      description:
-        "5+ years instructing and mentoring professionals in their career change journey",
-    },
-    {
-      icon: "/icons/user.svg",
-      title: "Community Champion",
-      description:
-        "Volunteering at various organizations devoted towards improving equity within the technology industry",
-    },
-    {
-      icon: "/icons/mic.svg",
-      title: "Conference Speaker",
-      description:
-        "Speaking at conferences with a focus on the technology industry and people leadership",
-    },
-    {
-      icon: "/icons/zap.svg",
-      title: "Freelance Developer",
-      description:
-        "Supporting small businesses who seek to digitally engage their customers with highly performant websites",
-    },
-  ],
-};
-
-export const featuresTwo = {
-  subheading: "",
-  heading: "Relaying Experiences to the Technology Community",
-  description:
-    "I spend my time at both internal and external events speaking about my experiences in the technology industry, and how we can all work together for the better.",
-  imageSrc:
-    "https://raw.githubusercontent.com/qiheme/headshots/master/3W1A9022.jpeg",
-  textOnLeft: false,
-};
-
-export const contactForm = {
-  subheading: "Contact Quincy",
-  // Heading is split so "get in touch" can be highlighted in the primary color.
-  headingBefore: "Feel free to ",
-  headingHighlight: "get in touch",
-  headingAfter: " with me.",
-  description:
-    "Use the below form to send a message to me. I'll get back to you shortly!",
-  submitButtonText: "Send",
-  email: "contact@quincyihe.me",
-  illustration: "/illustrations/email-illustration.svg",
-  textOnLeft: true,
-};
-
-export const footer = {
-  logoText: "Quincy Iheme",
-  links: [{ label: "Home", href: "#" }],
-  twitterUrl: "https://twitter.com/codespeakteach",
-  instagramUrl: "https://instagram.com/codespeakteach",
-  copyright: "© Copyright 2022. All Rights Reserved.",
-};
-
 export const site = {
-  title: "Quincy Iheme",
+  title: "Quincy Iheme — Senior Engineering Manager",
   description:
-    "Quincy Iheme — Engineering Leader, EdTech professional, community champion, and conference speaker with 8+ years of industry experience.",
+    "Quincy Iheme leads engineering teams behind Xfinity.com's marketing and buyflow web apps and the shared component library other teams build on.",
+  updated: "Oct 2026",
 };
+
+export const links = {
+  email: "qiheme@gmail.com",
+  linkedin: "https://www.linkedin.com/in/qiheme",
+  github: "https://github.com/qiheme",
+};
+
+export const hero = {
+  label: "Senior Engineering Manager · Comcast",
+  location: "Cherry Hill, NJ",
+  headlineLead: "Engineering ambition",
+  headlineAccent: "into operating rhythm.",
+  bio: "I lead three teams, about 18 engineers, behind Xfinity.com's marketing and buyflow web apps and the shared component library other teams build on. From SDET to senior engineering manager over 12 years, I've learned the job is turning big goals into a rhythm teams can ship on: clear ownership, steady releases, and engineers growing into leads.",
+  image: "/headshot.jpg",
+};
+
+export const stats = [
+  { value: "12+", label: "Years shipping web" },
+  { value: "3 · ~18", label: "Teams · engineers led" },
+  { value: "2 → 4", label: "Teams scaled in 2025" },
+  { value: "~5 yrs", label: "Teaching web development" },
+];
+
+export type Project = {
+  title: string;
+  badge: string;
+  badgeTone: "info" | "active";
+  icon: "layers" | "box" | "cloud";
+  description: string;
+  tags: string[];
+  links: { label: string; href: string }[];
+};
+
+export const projects: Project[] = [
+  {
+    title: "Xfinity.com web platform",
+    badge: "MY TEAMS",
+    badgeTone: "info",
+    icon: "layers",
+    description:
+      "My teams build and run Xfinity.com's marketing and customer buyflow apps, plus the shared components, utilities, and data services underneath them. We grew the Helix design system, moved shared libraries to a governed model with docs and a support rotation, and put them on a steady release cadence.",
+    tags: ["React", "TypeScript", "Redux", "Sitecore"],
+    links: [{ label: "xfinity.com", href: "https://www.xfinity.com" }],
+  },
+  {
+    title: "Cobalt",
+    badge: "OPEN SOURCE",
+    badgeTone: "active",
+    icon: "box",
+    description:
+      "The React component library for my Quincy OS design system, the system this site is built on. Dark-first, with a focus on component architecture, API design, and accessibility.",
+    tags: ["React", "TypeScript", "Storybook"],
+    links: [
+      { label: "Storybook", href: "https://q-labs.github.io/cobalt" },
+      { label: "GitHub", href: "https://github.com/q-labs/cobalt" },
+    ],
+  },
+  {
+    title: "Cloud129 studio site",
+    badge: "SHIPPED",
+    badgeTone: "info",
+    icon: "cloud",
+    description:
+      "Site for Cloud 12Nine Technologies, the independent web studio I run. Built with Astro and deployed to Netlify through GitHub Actions.",
+    tags: ["Astro", "Netlify", "GitHub Actions"],
+    links: [{ label: "Visit site", href: "https://cloud-12nine.netlify.app" }],
+  },
+];
+
+export type Talk = {
+  year: string;
+  event: string;
+  title: string;
+  note?: string;
+  href?: string;
+  linkLabel?: string;
+};
+
+export const talks: Talk[] = [
+  {
+    year: "2026",
+    event: "LeadDev",
+    title: "Proposal review board member and table talk host",
+  },
+  {
+    year: "2024",
+    event: "Enterprise Technology Leadership Summit Europe (IT Revolution)",
+    title: "First Time Engineering Manager Experiences at Comcast",
+    note: "Co-presented",
+    href: "https://videos.itrevolution.com/speakers/quincy-iheme",
+    linkLabel: "Watch",
+  },
+  {
+    year: "2021",
+    event: "SCTE Cable-Tec Expo",
+    title:
+      "Strategies for Continuous Integration and Continuous Deployment at Scale at the Network Edge",
+    note: "Presented and published technical paper",
+  },
+  {
+    year: "2021",
+    event: "BENgineers · Technically Speaking",
+    title: "0 to 100 with GitHub",
+    note: "Hands-on workshop",
+    href: "https://youtu.be/UnksJcXt8V8",
+    linkLabel: "Watch",
+  },
+  {
+    year: "2020",
+    event: "DevOpsDays NYC",
+    title: "Don't Fail Fast. Learn Faster.",
+    href: "https://youtu.be/C7TuyH4Aqxs",
+    linkLabel: "Watch",
+  },
+  {
+    year: "2019",
+    event: "Innovation4All (Comcast)",
+    title: "Why diversity in open source leads to better products",
+    href: "https://youtu.be/7oF_BoJZD5E",
+    linkLabel: "Watch",
+  },
+];
+
+export const teaching = {
+  title: "Teaching",
+  body: "About five years teaching web development at the University of Pennsylvania, Rutgers University, and General Assembly. RailsBridge instructor and organizer.",
+};
+
+export const community = {
+  title: "Community",
+  body: "Co-led and later chaired BENgineers, a Comcast technology resource group, and spoke at its conference (~600 attendees, 2021). Organized LibertyJS for Philadelphia developers. Served on Comcast's Open Source Advisory Council.",
+};
+
+export const capabilities = [
+  {
+    title: "Leadership",
+    items: [
+      "Multi-team org design",
+      "Hiring and onboarding",
+      "Coaching engineers into leads",
+      "Product, Design and business partnership",
+    ],
+  },
+  {
+    title: "Platform & design systems",
+    items: [
+      "Shared component libraries",
+      "Utilities, data layer, NPM packages",
+      "Governance and support models",
+    ],
+  },
+  {
+    title: "Customer-facing web",
+    items: [
+      "Marketing surfaces",
+      "Customer buyflow, carts, promotions",
+      "Personalization",
+      "CMS-driven content (Sitecore)",
+    ],
+  },
+  {
+    title: "Engineering & delivery",
+    items: [
+      "React, TypeScript, Redux",
+      "Astro, SolidJS",
+      "CI/CD: GitHub Actions, Jenkins, Concourse",
+      "AI-assisted engineering",
+    ],
+  },
+];

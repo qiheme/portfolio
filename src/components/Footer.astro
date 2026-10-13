@@ -1,70 +1,52 @@
 ---
-import { footer } from "../data/content";
+import { links, site } from "../data/content";
+const year = new Date().getFullYear();
 ---
 
-<div class="relative bg-gray-900 text-gray-100 -mx-8 -mb-8">
-  <div class="max-w-[1280px] mx-auto py-20 lg:py-24">
-    <div class="flex items-center justify-center flex-col px-8">
-      <div class="flex items-center justify-center md:justify-start">
-        <h5 class="ml-2 text-2xl font-black tracking-wider">
-          {footer.logoText}
-        </h5>
-      </div>
-
-      <div
-        class="mt-8 font-medium flex flex-wrap justify-center items-center flex-col sm:flex-row"
-      >
-        {
-          footer.links.map((link) => (
-            <a
-              href={link.href}
-              class="border-b-2 border-transparent hover:text-gray-300 hover:border-gray-300 pb-1 transition duration-300 mt-2 mx-4"
-            >
-              {link.label}
-            </a>
-          ))
-        }
-      </div>
-
-      <div class="mt-10">
-        <a
-          href={footer.twitterUrl}
-          class="cursor-pointer inline-block text-gray-100 hover:text-gray-500 transition duration-300 mx-4"
-          aria-label="Twitter"
-        >
-          <svg fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
-            <path
-              d="M22.162 5.656a8.384 8.384 0 01-2.402.658A4.196 4.196 0 0021.6 4c-.82.488-1.719.83-2.656 1.015a4.182 4.182 0 00-7.126 3.814 11.874 11.874 0 01-8.62-4.37 4.168 4.168 0 00-.566 2.103c0 1.45.738 2.731 1.86 3.481a4.168 4.168 0 01-1.894-.523v.052a4.185 4.185 0 003.355 4.101 4.21 4.21 0 01-1.89.072A4.185 4.185 0 007.97 16.65a8.394 8.394 0 01-6.191 1.732 11.83 11.83 0 006.41 1.88c7.693 0 11.9-6.373 11.9-11.9 0-.18-.005-.362-.013-.54a8.496 8.496 0 002.087-2.165z"
-            ></path>
-          </svg>
-        </a>
-        <a
-          href={footer.instagramUrl}
-          class="cursor-pointer inline-block text-gray-100 hover:text-gray-500 transition duration-300 mx-4"
-          aria-label="Instagram"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="w-5 h-5"
-          >
-            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-          </svg>
-        </a>
-      </div>
-
-      <p
-        class="text-center mt-10 font-medium tracking-wide text-sm text-gray-600"
-      >
-        {footer.copyright}
-      </p>
-    </div>
+<footer class="footer">
+  <div class="footer-inner">
+    <p class="footer-mono">© {year} Quincy Iheme · updated {site.updated}</p>
+    <ul class="footer-links">
+      <li><a href={links.github} rel="noopener">GitHub</a></li>
+      <li><a href={links.linkedin} rel="noopener">LinkedIn</a></li>
+      <li><a href={`mailto:${links.email}`}>Email</a></li>
+    </ul>
   </div>
-</div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--border-subtle);
+  }
+  .footer-inner {
+    max-width: var(--page-max);
+    margin: 0 auto;
+    padding: 20px var(--gutter);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+  }
+  .footer-mono {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+  .footer-links {
+    list-style: none;
+    display: flex;
+    gap: 4px 20px;
+  }
+  .footer-links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font-size: 14px;
+    color: var(--text-secondary);
+    text-decoration: none;
+  }
+  .footer-links a:hover {
+    color: var(--text-primary);
+  }
+</style>

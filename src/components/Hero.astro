@@ -1,42 +1,177 @@
 ---
-import { hero } from "../data/content";
+import Icon from "./Icon.astro";
+import { hero, stats, links, site } from "../data/content";
 ---
 
-<div class="relative -mx-8 -mt-8">
-  <div class="flex flex-col lg:flex-row bg-gray-100">
-    <div class="ml-8 mr-8 xl:pl-10 py-8">
-      <header
-        class="flex justify-between items-center max-w-[1280px] mx-auto"
-      >
-        <a
-          href="/"
-          class="flex items-center font-black border-b-0 text-2xl ml-0 mr-8 pb-0"
-        >
-          <img src={hero.logoURL} alt="logo" class="w-10 mr-3" />
-        </a>
-      </header>
+<section class="hero container" aria-labelledby="hero-title">
+  <div class="hero-grid" aria-hidden="true"></div>
 
-      <div
-        class="mt-24 lg:mt-24 lg:mb-24 flex flex-col sm:items-center lg:items-stretch"
-      >
-        <h1
-          class="text-3xl sm:text-5xl md:text-6xl lg:text-5xl font-black leading-none"
-        >
-          {hero.headingLine1}<br />
-          <span class="text-primary-500">{hero.headingHighlight}</span>
-        </h1>
-        <p
-          class="max-w-md my-8 lg:my-5 lg:my-8 sm:text-lg lg:text-base xl:text-lg leading-loose"
-        >
-          {hero.description}
-        </p>
-      </div>
-    </div>
-
-    <div
-      class="bg-green-500 bg-cover bg-center xl:ml-24 h-96 lg:h-auto lg:w-1/2 lg:flex-1"
-      style={`background-image: url("${hero.imageURL}");`}
-    >
+  <div class="id-row">
+    <img
+      class="avatar"
+      src={hero.image}
+      alt="Quincy Iheme"
+      width="72"
+      height="72"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <div>
+      <p class="overline">{hero.label}</p>
+      <p class="id-meta">{hero.location}</p>
     </div>
   </div>
-</div>
+
+  <h1 id="hero-title" class="headline">
+    {hero.headlineLead}<br />
+    <span>{hero.headlineAccent}</span>
+  </h1>
+
+  <p class="bio">{hero.bio}</p>
+
+  <div class="actions">
+    <a class="btn btn-primary" href="#work">
+      See the work <Icon name="arrow-right" size={16} />
+    </a>
+    <a class="btn btn-ghost" href={links.linkedin} rel="noopener">
+      <Icon name="linkedin" size={16} /> LinkedIn
+    </a>
+  </div>
+
+  <p class="hero-mono">{hero.location} · updated {site.updated}</p>
+
+  <dl class="stats">
+    {
+      stats.map((s) => (
+        <div class="stat">
+          <dt class="stat-label">{s.label}</dt>
+          <dd class="stat-val">{s.value}</dd>
+        </div>
+      ))
+    }
+  </dl>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    padding-top: 88px;
+    padding-bottom: 8px;
+  }
+  /* Fine grid texture — Quincy OS allows texture on hero canvases. */
+  .hero-grid {
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 520px;
+    z-index: -1;
+    background-image:
+      linear-gradient(var(--border-subtle) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 70% 70% at 30% 20%, #000 20%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 70% at 30% 20%, #000 20%, transparent 75%);
+  }
+  .id-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--border-strong);
+    flex-shrink: 0;
+  }
+  .overline {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--cobalt-300);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .overline::before {
+    content: "";
+    width: 24px;
+    height: 1px;
+    background: var(--cobalt-500);
+    flex-shrink: 0;
+  }
+  .id-meta {
+    margin-top: 6px;
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+  .headline {
+    font-family: var(--font-display);
+    font-size: clamp(40px, 6vw, 72px);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: var(--tracking-tighter);
+    margin-bottom: 24px;
+    text-wrap: balance;
+  }
+  .headline span {
+    color: var(--cobalt-400);
+  }
+  .bio {
+    font-size: 18px;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    max-width: 62ch;
+    margin-bottom: 36px;
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .hero-mono {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 28px;
+  }
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
+    margin: 48px 0 80px;
+    padding: 28px 0;
+    border-top: 1px solid var(--border-default);
+    border-bottom: 1px solid var(--border-default);
+  }
+  .stat {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 4px;
+  }
+  .stat-val {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+  .stat-label {
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+  @media (max-width: 760px) {
+    .hero {
+      padding-top: 56px;
+    }
+    .stats {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      row-gap: 28px;
+    }
+    .bio {
+      font-size: 17px;
+    }
+  }
+</style>

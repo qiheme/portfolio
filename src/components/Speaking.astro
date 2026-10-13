@@ -1,0 +1,160 @@
+---
+import Icon from "./Icon.astro";
+import { talks, teaching, community } from "../data/content";
+---
+
+<section id="speaking" class="section container" aria-labelledby="speaking-title">
+  <div class="section-header">
+    <h2 id="speaking-title" class="section-title">Speaking &amp; Teaching</h2>
+    <span class="section-meta">conferences · workshops · classrooms</span>
+  </div>
+
+  <div class="layout">
+    <ol class="timeline">
+      {
+        talks.map((t) => (
+          <li class="entry">
+            <span class="year">{t.year}</span>
+            <div class="entry-body">
+              <p class="event">{t.event}</p>
+              <p class="talk-title">{t.title}</p>
+              {(t.note || t.href) && (
+                <p class="entry-meta">
+                  {t.note && <span>{t.note}</span>}
+                  {t.href && (
+                    <a class="watch" href={t.href} rel="noopener">
+                      <Icon name="play" size={12} />
+                      {t.linkLabel ?? "Link"}
+                      <span class="sr-only"> {t.title}</span>
+                    </a>
+                  )}
+                </p>
+              )}
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+
+    <div class="side">
+      <div class="panel">
+        <h3 class="panel-title">{teaching.title}</h3>
+        <p class="panel-body">{teaching.body}</p>
+      </div>
+      <div class="panel">
+        <h3 class="panel-title">{community.title}</h3>
+        <p class="panel-body">{community.body}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+    gap: 32px;
+    align-items: start;
+  }
+  .timeline {
+    list-style: none;
+    position: relative;
+  }
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 52px;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: var(--border-default);
+  }
+  .entry {
+    position: relative;
+    display: grid;
+    grid-template-columns: 40px minmax(0, 1fr);
+    gap: 28px;
+    padding: 14px 0;
+  }
+  .entry::before {
+    content: "";
+    position: absolute;
+    left: 48px;
+    top: 21px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--bg-base);
+    border: 2px solid var(--cobalt-500);
+  }
+  .year {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--text-secondary);
+    padding-top: 2px;
+  }
+  .event {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 2px;
+  }
+  .talk-title {
+    font-family: var(--font-display);
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+  }
+  .entry-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 14px;
+    margin-top: 6px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+  .watch {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 28px;
+    color: var(--cobalt-300);
+    text-decoration: none;
+  }
+  .watch:hover {
+    color: var(--text-primary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .side {
+    display: grid;
+    gap: 16px;
+  }
+  .panel {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+    padding: 20px 22px;
+  }
+  .panel-title {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--cobalt-300);
+    margin-bottom: 10px;
+  }
+  .panel-body {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+  @media (max-width: 900px) {
+    .layout {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>
