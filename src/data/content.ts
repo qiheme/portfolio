@@ -22,13 +22,13 @@ export const hero = {
   location: "Cherry Hill, NJ",
   headlineLead: "Engineering ambition",
   headlineAccent: "into operating rhythm.",
-  bio: "I lead three teams, about 18 engineers, behind Xfinity.com's marketing and buyflow web apps and the shared component library other teams build on. From SDET to senior engineering manager over 12 years, I've learned the job is turning big goals into a rhythm teams can ship on: clear ownership, steady releases, and engineers growing into leads.",
+  bio: "I lead three teams, 20+ engineers, behind Xfinity.com's marketing and buyflow web apps and the shared component library other teams build on. From SDET to senior engineering manager over 12 years, I've learned the job is turning big goals into a rhythm teams can ship on: clear ownership, steady releases, and engineers growing into leads.",
   image: "/headshot.jpg",
 };
 
 export const stats = [
   { value: "12+", label: "Years shipping web" },
-  { value: "3 · ~18", label: "Teams · engineers led" },
+  { value: "3 · 20+", label: "Teams · engineers led" },
   { value: "2 → 4", label: "Teams scaled in 2025" },
   { value: "~5 yrs", label: "Teaching web development" },
 ];
