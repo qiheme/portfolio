@@ -37,7 +37,7 @@ export type Project = {
   title: string;
   badge: string;
   badgeTone: "info" | "active";
-  icon: "layers" | "box" | "cloud";
+  icon: "layers" | "box" | "cloud" | "film";
   description: string;
   tags: string[];
   links: { label: string; href: string }[];
@@ -53,6 +53,18 @@ export const projects: Project[] = [
       "My teams build and run Xfinity.com's marketing and customer buyflow apps, plus the shared components, utilities, and data services underneath them. We grew the Helix design system, moved shared libraries to a governed model with docs and a support rotation, and put them on a steady release cadence.",
     tags: ["React", "TypeScript", "Redux", "Sitecore"],
     links: [{ label: "xfinity.com", href: "https://www.xfinity.com" }],
+  },
+  {
+    title: "DragonLily Productions",
+    badge: "CLIENT · LIVE",
+    badgeTone: "active",
+    icon: "film",
+    description:
+      "Marketing site for a video production company. I took the client's logo into Claude Design, built the whole experience from it in Astro and Tailwind, with a reel, producer bio and contact flow, and kept content in a lightweight layer in code so a CMS can be added later.",
+    tags: ["Astro", "Tailwind", "Claude Design", "Netlify"],
+    links: [
+      { label: "dragonlilyproductions.com", href: "https://www.dragonlilyproductions.com" },
+    ],
   },
   {
     title: "Cobalt",
