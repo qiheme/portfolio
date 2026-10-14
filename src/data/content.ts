@@ -60,7 +60,7 @@ export const projects: Project[] = [
     badgeTone: "active",
     icon: "film",
     description:
-      "Marketing site for a Los Angeles video production company. I took the client's logo into Claude Design, built the whole experience from it in Astro and Tailwind, with a reel, producer bio and contact flow, and kept content in a lightweight layer in code so a CMS can be added later.",
+      "Marketing site for a video production company. I took the client's logo into Claude Design, built the whole experience from it in Astro and Tailwind, with a reel, producer bio and contact flow, and kept content in a lightweight layer in code so a CMS can be added later.",
     tags: ["Astro", "Tailwind", "Claude Design", "Netlify"],
     links: [
       { label: "dragonlilyproductions.com", href: "https://www.dragonlilyproductions.com" },
