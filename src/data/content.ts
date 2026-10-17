@@ -28,12 +28,12 @@ export const hero = {
   location: "Cherry Hill, NJ",
   headlineLead: "Engineering ambition",
   headlineAccent: "into operating rhythm.",
-  bio: "I lead three teams, about 18 engineers, behind Xfinity.com's marketing and buyflow web apps and the shared component library other teams build on. From SDET to senior engineering manager over 12 years, I've learned the job is turning big goals into a rhythm teams can ship on: clear ownership, steady releases, and engineers growing into leads.",
+  bio: "I lead three teams, 20+ engineers, behind Xfinity.com's marketing and buyflow web apps and the shared component library other teams build on. From SDET to senior engineering manager over 12 years, I've learned the job is turning big goals into a rhythm teams can ship on: clear ownership, steady releases, and engineers growing into leads.",
 };
 
 export const stats = [
   { value: "12+", label: "Years shipping web" },
-  { value: "3 · ~18", label: "Teams · engineers led" },
+  { value: "3 · 20+", label: "Teams · engineers led" },
   { value: "2 → 4", label: "Teams scaled in 2025" },
   { value: "~5 yrs", label: "Teaching web development" },
 ];
@@ -42,7 +42,7 @@ export type Project = {
   title: string;
   badge: string;
   badgeTone: "info" | "active";
-  icon: "layers" | "box" | "cloud";
+  icon: "layers" | "box" | "cloud" | "film";
   description: string;
   tags: string[];
   links: { label: string; href: string }[];
@@ -58,6 +58,18 @@ export const projects: Project[] = [
       "My teams build and run Xfinity.com's marketing and customer buyflow apps, plus the shared components, utilities, and data services underneath them. We grew the Helix design system, moved shared libraries to a governed model with docs and a support rotation, and put them on a steady release cadence.",
     tags: ["React", "TypeScript", "Redux", "Sitecore"],
     links: [{ label: "xfinity.com", href: "https://www.xfinity.com" }],
+  },
+  {
+    title: "DragonLily Productions",
+    badge: "CLIENT · LIVE",
+    badgeTone: "active",
+    icon: "film",
+    description:
+      "Marketing site for a video production company. I took the client's logo into Claude Design, built the whole experience from it in Astro and Tailwind, with a reel, producer bio and contact flow, and kept content in a lightweight layer in code so a CMS can be added later.",
+    tags: ["Astro", "Tailwind", "Claude Design", "Netlify"],
+    links: [
+      { label: "dragonlilyproductions.com", href: "https://www.dragonlilyproductions.com" },
+    ],
   },
   {
     title: "Cobalt",
