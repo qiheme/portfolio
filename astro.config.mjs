@@ -11,4 +11,11 @@ export default defineConfig({
     // Keep all CSS in external files so the CSP can stay at style-src 'self'.
     inlineStylesheets: "never",
   },
+  vite: {
+    build: {
+      // Never inline fonts as data: URIs; the CSP only allows font-src 'self'.
+      assetsInlineLimit: (file) =>
+        /\.(woff2?|ttf|otf)$/.test(file) ? false : undefined,
+    },
+  },
 });
