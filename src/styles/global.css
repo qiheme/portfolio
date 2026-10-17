@@ -9,6 +9,8 @@
 }
 
 html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
   scroll-behavior: smooth;
   scroll-padding-top: 72px;
 }
@@ -157,4 +159,49 @@ svg {
   background: var(--bg-raised);
   color: var(--text-secondary);
   border: 1px solid var(--border-subtle);
+}
+
+/* Print: light ink-friendly page, no chrome, and show where links go. */
+@media print {
+  :root {
+    --bg-base: #fff;
+    --bg-surface: #fff;
+    --bg-raised: #fff;
+    --text-primary: #000;
+    --text-secondary: #333;
+    --border-subtle: #ccc;
+    --border-default: #ccc;
+    --border-strong: #999;
+    --cobalt-300: #1d4ed8;
+    --cobalt-400: #1d4ed8;
+  }
+  .nav,
+  .skip-link,
+  .footer-links {
+    display: none !important;
+  }
+  * {
+    box-shadow: none !important;
+    background-image: none !important;
+  }
+  .btn {
+    border: 1px solid #999;
+    background: none;
+    color: #000;
+  }
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+  }
+  h2,
+  h3 {
+    break-after: avoid;
+  }
+  li,
+  .panel,
+  .cap-card,
+  .band {
+    break-inside: avoid;
+  }
 }

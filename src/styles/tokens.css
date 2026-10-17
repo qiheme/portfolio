@@ -1,6 +1,7 @@
 /*
  * Quincy OS Design System v1.1 — tokens (dark mode, the system default).
- * Ported from the design system's colors_and_type.css. Fonts load in Layout.astro.
+ * Ported from the design system's colors_and_type.css. Fonts are self-hosted
+ * (Fontsource variable builds) and imported in Layout.astro.
  */
 
 :root {
@@ -51,9 +52,9 @@
   --shadow-glow-cobalt: 0 0 24px rgba(37, 99, 235, 0.3);
 
   /* Type */
-  --font-display: "Space Grotesk", "Helvetica Neue", sans-serif;
-  --font-body: "DM Sans", "Helvetica Neue", sans-serif;
-  --font-mono: "JetBrains Mono", "Fira Code", monospace;
+  --font-display: "Space Grotesk Variable", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "DM Sans Variable", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono Variable", "Fira Code", ui-monospace, monospace;
 
   --tracking-tighter: -0.04em;
   --tracking-tight: -0.02em;

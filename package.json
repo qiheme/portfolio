@@ -8,10 +8,20 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "check": "astro check",
+    "validate:html": "html-validate \"dist/**/*.html\"",
+    "verify": "astro check && astro build && npm run validate:html",
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/vercel": "^8.2.7",
+    "@fontsource-variable/dm-sans": "^5.3.0",
+    "@fontsource-variable/jetbrains-mono": "^5.3.0",
+    "@fontsource-variable/space-grotesk": "^5.3.0",
     "astro": "^5.16.2"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "html-validate": "^11.16.2",
+    "typescript": "^5.9.3"
   }
 }
