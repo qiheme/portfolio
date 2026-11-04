@@ -5,10 +5,10 @@
  */
 
 export const site = {
-  title: "Quincy Iheme — Senior Engineering Manager",
+  title: "Quincy Iheme — Engineering Leader, Frontend Platforms & Design Systems",
   description:
-    "Quincy Iheme leads engineering teams behind Xfinity.com's marketing and buyflow web apps and the shared component library other teams build on.",
-  updated: "Oct 2026",
+    "Quincy Iheme is an engineering leader for frontend platforms, design systems and customer-facing web. He leads three teams (20+ engineers) behind Xfinity.com's marketing and customer acquisition experiences and the shared frontend platform other teams build on.",
+  updated: "Nov 2026",
 };
 
 export const links = {
@@ -18,18 +18,18 @@ export const links = {
 };
 
 export const hero = {
-  label: "Senior Engineering Manager · Comcast",
+  label: "Engineering Leader · Frontend Platforms & Design Systems",
   location: "Cherry Hill, NJ",
   headlineLead: "Engineering ambition",
   headlineAccent: "into operating rhythm.",
-  bio: "I lead three teams, 20+ engineers, behind Xfinity.com's marketing and buyflow web apps and the shared component library other teams build on. From SDET to senior engineering manager over 12 years, I've learned the job is turning big goals into a rhythm teams can ship on: clear ownership, steady releases, and engineers growing into leads.",
+  bio: "I'm a senior engineering manager at Comcast. Through tech and team leads, I lead three teams, 20+ engineers, behind Xfinity.com's marketing and customer acquisition experiences and the shared frontend platform and design system other product teams build on. From SDET to senior engineering manager over 12 years, I've learned the job is turning big goals into a rhythm teams can ship on: clear ownership, platform work kept separate from feature delivery, steady releases, and engineers growing into leads.",
   image: "/headshot.jpg",
 };
 
 export const stats = [
   { value: "12+", label: "Years shipping web" },
   { value: "3 · 20+", label: "Teams · engineers led" },
-  { value: "2 → 4", label: "Teams scaled in 2025" },
+  { value: "6 yrs", label: "Leading engineering teams" },
   { value: "~5 yrs", label: "Teaching web development" },
 ];
 
@@ -50,8 +50,8 @@ export const projects: Project[] = [
     badgeTone: "info",
     icon: "layers",
     description:
-      "My teams build and run Xfinity.com's marketing and customer buyflow apps, plus the shared components, utilities, and data services underneath them. We grew the Helix design system, moved shared libraries to a governed model with docs and a support rotation, and put them on a steady release cadence.",
-    tags: ["React", "TypeScript", "Redux", "Sitecore"],
+      "My teams build and run Xfinity.com's marketing and customer acquisition apps and the shared frontend platform underneath them. I split platform work from feature delivery so the shared platform stayed healthy as features sped up, and turned shared components and utilities into a governed product with docs, triage and a US/India support rotation. We grew the Helix design system by 10+ components with CI quality gates and a biweekly release cadence, set up a standing design sync so new features reuse existing components, and stood up an AI delivery team that was an early adopter of AI-native delivery practices.",
+    tags: ["React", "TypeScript", "Redux", "Sitecore", "SolidJS"],
     links: [{ label: "xfinity.com", href: "https://www.xfinity.com" }],
   },
   {
@@ -72,7 +72,7 @@ export const projects: Project[] = [
     badgeTone: "active",
     icon: "box",
     description:
-      "The React component library for my Quincy OS design system, the system this site is built on. Dark-first, with a focus on component architecture, API design, and accessibility.",
+      "My personal design system and its React component library. This site is built on it. Dark-first, with a focus on component architecture, API design, and accessibility.",
     tags: ["React", "TypeScript", "Storybook"],
     links: [
       { label: "Storybook", href: "https://q-labs.github.io/cobalt" },
@@ -101,11 +101,6 @@ export type Talk = {
 };
 
 export const talks: Talk[] = [
-  {
-    year: "2026",
-    event: "LeadDev",
-    title: "Proposal review board member and table talk host",
-  },
   {
     year: "2024",
     event: "Enterprise Technology Leadership Summit Europe (IT Revolution)",
@@ -152,43 +147,45 @@ export const teaching = {
 
 export const community = {
   title: "Community",
-  body: "Co-led and later chaired BENgineers, a Comcast technology resource group, and spoke at its conference (~600 attendees, 2021). Organized LibertyJS for Philadelphia developers. Served on Comcast's Open Source Advisory Council.",
+  body: "Co-led and later chaired BENgineers, a Comcast technology resource group, and spoke at its conference (~600 attendees, 2021). Organized LibertyJS for Philadelphia developers. Served on Comcast's Open Source Advisory Council. LeadDev proposal review board member and table talk host.",
 };
 
 export const capabilities = [
   {
-    title: "Leadership",
+    title: "Engineering leadership",
     items: [
-      "Multi-team org design",
+      "Multi-team leadership and org design",
       "Hiring and onboarding",
-      "Coaching engineers into leads",
-      "Product, Design and business partnership",
+      "Developing tech and team leads",
+      "Product, Design and content partnership",
     ],
   },
   {
-    title: "Platform & design systems",
+    title: "Platform engineering",
     items: [
-      "Shared component libraries",
-      "Utilities, data layer, NPM packages",
+      "Frontend architecture and design systems",
+      "Shared components, services, data layer",
       "Governance and support models",
+      "CMS integration (Sitecore)",
     ],
   },
   {
-    title: "Customer-facing web",
+    title: "Product engineering",
     items: [
-      "Marketing surfaces",
-      "Customer buyflow, carts, promotions",
+      "Customer acquisition and conversion",
+      "Buyflow, cart, promotions",
       "Personalization",
-      "CMS-driven content (Sitecore)",
+      "Xfinity Home (home security) and Internet sites",
+      "Xfinity app: Swift/iOS features and in-app web views",
     ],
   },
   {
-    title: "Engineering & delivery",
+    title: "Technologies",
     items: [
       "React, TypeScript, Redux",
-      "Astro, SolidJS",
-      "CI/CD: GitHub Actions, Jenkins, Concourse",
-      "AI-assisted engineering",
+      "Sitecore, SolidJS, Astro",
+      "CI/CD: GitHub Actions, Cloud Foundry, Concourse, Jenkins",
+      "AI-native delivery",
     ],
   },
 ];
