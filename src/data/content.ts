@@ -50,7 +50,7 @@ export const projects: Project[] = [
     badgeTone: "info",
     icon: "layers",
     description:
-      "My teams build and run Xfinity.com's marketing and customer acquisition apps and the shared frontend platform underneath them. I split platform work from feature delivery so the shared platform stayed healthy as features sped up, and turned shared components and utilities into a governed product with docs, triage and a US/India support rotation. We grew the Helix design system by 10+ components with CI quality gates and a biweekly release cadence, set up a standing design sync so new features reuse existing components, and stood up an AI delivery team that was an early adopter of agent instruction files and agent-written docs.",
+      "My teams build and run Xfinity.com's marketing and customer acquisition apps and the shared frontend platform underneath them. I split platform work from feature delivery so the shared platform stayed healthy as features sped up, and turned shared components and utilities into a governed product with docs, triage and a US/India support rotation. We grew the Helix design system by 10+ components with CI quality gates and a biweekly release cadence, set up a standing design sync so new features reuse existing components, and stood up an AI delivery team that was an early adopter of AI-native delivery practices.",
     tags: ["React", "TypeScript", "Redux", "Sitecore", "SolidJS"],
     links: [{ label: "xfinity.com", href: "https://www.xfinity.com" }],
   },
