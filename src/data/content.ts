@@ -175,6 +175,8 @@ export const capabilities = [
       "Customer acquisition and conversion",
       "Buyflow, cart, promotions",
       "Personalization",
+      "Xfinity Home (home security) and Internet sites",
+      "Xfinity app: Swift/iOS features and in-app web views",
     ],
   },
   {
@@ -183,7 +185,7 @@ export const capabilities = [
       "React, TypeScript, Redux",
       "Sitecore, SolidJS, Astro",
       "CI/CD: GitHub Actions, Cloud Foundry, Concourse, Jenkins",
-      "AI-assisted delivery (agent instruction files)",
+      "AI-native delivery",
     ],
   },
 ];
