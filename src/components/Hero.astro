@@ -1,5 +1,7 @@
 ---
+import { Picture } from "astro:assets";
 import Icon from "./Icon.astro";
+import headshot from "../assets/headshot.jpg";
 import { hero, stats, links, site } from "../data/content";
 ---
 
@@ -7,12 +9,14 @@ import { hero, stats, links, site } from "../data/content";
   <div class="hero-grid" aria-hidden="true"></div>
 
   <div class="id-row">
-    <img
+    <Picture
       class="avatar"
-      src={hero.image}
+      src={headshot}
+      formats={["avif", "webp"]}
       alt="Quincy Iheme"
-      width="72"
-      height="72"
+      width={72}
+      height={72}
+      densities={[1, 2, 3]}
       loading="eager"
       fetchpriority="high"
     />
