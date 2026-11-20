@@ -22,7 +22,7 @@ export const hero = {
   location: "Cherry Hill, NJ",
   headlineLead: "Engineering ambition",
   headlineAccent: "into operating rhythm.",
-  bio: "I'm a senior engineering manager at Comcast. Through tech and team leads, I lead three teams, 20+ engineers, behind Xfinity.com's marketing and customer acquisition experiences and the shared frontend platform and design system other product teams build on. From SDET to senior engineering manager over 12 years, I've learned the job is turning big goals into a rhythm teams can ship on: clear ownership, platform work kept separate from feature delivery, steady releases, and engineers growing into leads.",
+  bio: "I'm a senior engineering manager at Comcast. Through tech and team leads, I lead three teams, 20+ engineers, behind Xfinity.com's marketing and customer acquisition experiences and the shared frontend platform other product teams build on. From SDET to senior engineering manager over 12 years, I've learned the job is turning big goals into a rhythm teams can ship on: clear ownership, platform work kept separate from feature delivery, steady releases, and engineers growing into leads.",
   image: "/headshot.jpg",
 };
 
@@ -50,7 +50,7 @@ export const projects: Project[] = [
     badgeTone: "info",
     icon: "layers",
     description:
-      "My teams build and run Xfinity.com's marketing and customer acquisition apps and the shared frontend platform underneath them. I split platform work from feature delivery so the shared platform stayed healthy as features sped up, and turned shared components and utilities into a governed product with docs, triage and a US/India support rotation. We grew the Helix design system by 10+ components with CI quality gates and a biweekly release cadence, set up a standing design sync so new features reuse existing components, and stood up an AI delivery team that was an early adopter of AI-native delivery practices.",
+      "My teams build and run Xfinity.com's marketing and customer acquisition apps and the shared frontend platform underneath them. I split platform work from feature delivery so the shared platform stayed healthy as features sped up, and turned shared components and utilities into a governed product with docs, triage and a US/India support rotation. We grew Helix, a component library built on Comcast's internal design system, by 10+ production components with CI quality gates and a biweekly release cadence, set up a standing design sync so new features reuse existing components, and stood up an AI delivery team that was an early adopter of AI-native delivery practices.",
     tags: ["React", "TypeScript", "Redux", "Sitecore", "SolidJS"],
     links: [{ label: "xfinity.com", href: "https://www.xfinity.com" }],
   },
