@@ -1,0 +1,97 @@
+---
+/* Article header: tag chip, h1, lede and the C8 byline. */
+import {
+  type Post,
+  formatDate,
+  isoDate,
+  readingTime,
+  showDraftPill,
+  updatedDate,
+} from "../lib/blog";
+
+interface Props {
+  post: Post;
+}
+const { post } = Astro.props;
+const { title, description, pubDate, tags } = post.data;
+const updated = updatedDate(post);
+const minutes = readingTime(post.body);
+---
+
+<header class="post-header">
+  {showDraftPill(post) && <span class="pill-draft">Draft · dev only</span>}
+  {tags[0] && <span class="tag post-tag">{tags[0]}</span>}
+  <h1 class="post-h1">{title}</h1>
+  <p class="post-lede">{description}</p>
+  <p class="byline">
+    <span class="byline-name">Quincy Iheme</span>
+    <span class="byline-sep" aria-hidden="true">·</span>
+    <time datetime={isoDate(pubDate)}>{formatDate(pubDate)}</time>
+    {
+      updated && (
+        <>
+          <span class="byline-sep" aria-hidden="true">·</span>
+          <span>
+            Updated <time datetime={isoDate(updated)}>{formatDate(updated)}</time>
+          </span>
+        </>
+      )
+    }
+    <span class="byline-sep" aria-hidden="true">·</span>
+    <span>{minutes} min read</span>
+  </p>
+</header>
+
+<style>
+  .post-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-bottom: 32px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--border-default);
+  }
+  .post-header .pill-draft {
+    margin-bottom: 12px;
+  }
+  .post-tag {
+    margin-bottom: 16px;
+  }
+  .post-h1 {
+    font-family: var(--font-display);
+    font-size: var(--fs-h1-article);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+    overflow-wrap: anywhere;
+    margin-bottom: 16px;
+  }
+  .post-lede {
+    font-size: var(--fs-lede);
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+    text-wrap: pretty;
+  }
+  .byline {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 12px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: var(--tracking-wide);
+    color: var(--text-secondary);
+  }
+  .byline-name {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0;
+    color: var(--text-primary);
+  }
+  .byline-sep {
+    color: var(--text-tertiary);
+  }
+</style>

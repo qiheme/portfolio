@@ -1,0 +1,87 @@
+---
+import { render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import Nav from "../../components/Nav.astro";
+import Footer from "../../components/Footer.astro";
+import Icon from "../../components/Icon.astro";
+import PostHeader from "../../components/PostHeader.astro";
+import { BLOG_DEFAULT_OG, type Post, getPosts, updatedDate } from "../../lib/blog";
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+interface Props {
+  post: Post;
+}
+const { post } = Astro.props;
+const { title, description, pubDate, ogImage, canonicalUrl, linkedinUrl } = post.data;
+const { Content } = await render(post);
+---
+
+<Layout
+  title={`${title} · Quincy Iheme`}
+  ogTitle={title}
+  description={description}
+  ogType="article"
+  ogImage={ogImage ?? BLOG_DEFAULT_OG}
+  ogImageAlt={title}
+  canonical={canonicalUrl}
+  publishedTime={pubDate}
+  modifiedTime={updatedDate(post)}
+>
+  <Nav current="writing" />
+  <main id="main" tabindex="-1">
+    <div class="container">
+      <article class="article">
+        <a class="link-back article-back" href="/blog">
+          <Icon name="arrow-left" size={14} /> All writing
+        </a>
+
+        <PostHeader post={post} />
+
+        <div class="prose">
+          <Content />
+        </div>
+
+        <footer class="article-footer">
+          <a class="link-back" href="/blog">
+            <Icon name="arrow-left" size={14} /> All writing
+          </a>
+          {
+            linkedinUrl && (
+              <a class="link-arrow" href={linkedinUrl} rel="noopener">
+                Discuss on LinkedIn<span aria-hidden="true">&nbsp;↗</span>
+                <span class="sr-only"> (opens linkedin.com)</span>
+              </a>
+            )
+          }
+        </footer>
+      </article>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .article {
+    max-width: var(--measure);
+    margin: 0 auto;
+    padding-top: clamp(24px, 4vw, 48px);
+    padding-bottom: 96px;
+  }
+  .article-back {
+    margin-bottom: clamp(16px, 3vw, 32px);
+  }
+  .article-footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px 24px;
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border-default);
+  }
+</style>
