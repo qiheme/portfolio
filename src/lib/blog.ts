@@ -19,13 +19,18 @@ export async function getPosts(): Promise<Post[]> {
   );
 }
 
-const FENCE = /^(```|~~~)[\s\S]*?^\1\s*$/gm;
+/*
+ * Fenced code blocks, CommonMark-shaped. Opening fence: up to 3 spaces of indent,
+ * 3+ backticks or tildes, optional info string. Closing fence: same character,
+ * at least as long, up to 3 spaces of indent. An unclosed fence runs to end of file.
+ */
+const FENCE = /^ {0,3}(([`~])\2{2,})[^\n]*\n[\s\S]*?(?:^ {0,3}\1\2*[ \t]*$|(?![\s\S]))/gm;
 
 /** Markdown rules the schema can't express. Throws so the build fails with the file name. */
 export function lintPost(post: Post): void {
   const where = post.filePath ?? post.id;
   const prose = (post.body ?? "").replace(FENCE, "");
-  if (/^# /m.test(prose)) {
+  if (/^ {0,3}#(?:[ \t]|$)/m.test(prose)) {
     throw new Error(`${where}: use ## and ### only; the post title is the page's h1.`);
   }
   if (/!\[\s*\]\(/.test(prose)) {
