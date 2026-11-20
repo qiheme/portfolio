@@ -1,31 +1,130 @@
 ---
 import BrandMark from "./BrandMark.astro";
+import Icon from "./Icon.astro";
 import { links } from "../data/content";
+
+interface Props {
+  /** Which primary destination this page belongs to. */
+  current?: "writing";
+}
+const { current } = Astro.props;
+
+// Absolute paths so the section anchors work from every page, not just home.
+const items = [
+  { label: "Work", href: "/#work" },
+  { label: "Speaking", href: "/#speaking" },
+  { label: "Capabilities", href: "/#capabilities" },
+  { label: "Writing", href: "/blog", key: "writing" },
+] as const;
 ---
 
 <header class="nav">
   <div class="nav-inner">
-    <a class="nav-logo" href="#top" aria-label="Quincy Iheme, back to top">
+    <a class="nav-logo" href="/" aria-label="Quincy Iheme, home">
       <BrandMark size={26} />
       <span>Quincy Iheme</span>
     </a>
-    <nav aria-label="Primary">
+
+    <nav class="nav-desktop" aria-label="Primary">
       <ul class="nav-links">
-        <li><a class="nav-link" href="#work">Work</a></li>
-        <li><a class="nav-link" href="#speaking">Speaking</a></li>
-        <li><a class="nav-link" href="#capabilities">Capabilities</a></li>
+        {
+          items.map((item) => (
+            <li>
+              <a
+                class="nav-link"
+                href={item.href}
+                aria-current={"key" in item && item.key === current ? "page" : undefined}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
       </ul>
     </nav>
-    <a class="btn btn-primary nav-cta" href={`mailto:${links.email}`}>Get in touch</a>
+
+    <div class="nav-actions">
+      <a class="btn btn-primary nav-cta" href={`mailto:${links.email}`}>Get in touch</a>
+
+      <!-- C2: a disclosure, not a modal. <details> keeps it working without JS. -->
+      <details class="menu" data-menu>
+        <summary class="menu-button" aria-label="Menu" aria-controls="mobile-menu" aria-expanded="false">
+          <Icon name="menu" size={20} class="icon-open" />
+          <Icon name="x" size={20} class="icon-close" />
+        </summary>
+        <nav id="mobile-menu" class="menu-panel" aria-label="Primary">
+          <ul>
+            {
+              items.map((item) => {
+                const isCurrent = "key" in item && item.key === current;
+                return (
+                  <li>
+                    <a
+                      class:list={["menu-link", { "is-current": isCurrent }]}
+                      href={item.href}
+                      aria-current={isCurrent ? "page" : undefined}
+                    >
+                      {item.label}
+                      {isCurrent && (
+                        <span class="menu-tag" aria-hidden="true">
+                          current
+                        </span>
+                      )}
+                    </a>
+                  </li>
+                );
+              })
+            }
+          </ul>
+        </nav>
+      </details>
+    </div>
   </div>
 </header>
+
+<script>
+  const menu = document.querySelector<HTMLDetailsElement>("[data-menu]");
+  const button = menu?.querySelector<HTMLElement>("summary");
+
+  if (menu && button) {
+    const close = (returnFocus = false) => {
+      if (!menu.open) return;
+      menu.open = false;
+      if (returnFocus) button.focus();
+    };
+
+    menu.addEventListener("toggle", () => {
+      button.setAttribute("aria-expanded", String(menu.open));
+    });
+
+    menu.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && menu.open) {
+        event.preventDefault();
+        close(true);
+      }
+    });
+
+    menu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => close());
+    });
+
+    document.addEventListener("click", (event) => {
+      if (menu.open && !menu.contains(event.target as Node)) close();
+    });
+
+    const desktop = window.matchMedia("(min-width: 720px)");
+    desktop.addEventListener("change", (event) => {
+      if (event.matches) close();
+    });
+  }
+</script>
 
 <style>
   .nav {
     position: sticky;
     top: 0;
-    z-index: 100;
-    background: rgba(4, 5, 8, 0.85);
+    z-index: var(--z-nav);
+    background: var(--bg-scrim);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border-subtle);
@@ -33,8 +132,9 @@ import { links } from "../data/content";
   .nav-inner {
     max-width: var(--page-max);
     margin: 0 auto;
-    padding: 0 var(--gutter);
-    height: 60px;
+    padding-left: max(var(--gutter), env(safe-area-inset-left));
+    padding-right: max(var(--gutter), env(safe-area-inset-right));
+    height: var(--nav-height);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -44,42 +144,165 @@ import { links } from "../data/content";
     display: flex;
     align-items: center;
     gap: 10px;
+    min-height: var(--target-min);
     font-family: var(--font-display);
     font-size: 16px;
     font-weight: 700;
     letter-spacing: var(--tracking-tight);
     text-decoration: none;
   }
+
+  /* C1 · desktop links */
   .nav-links {
     list-style: none;
     display: flex;
-    gap: 2px;
+    gap: 8px;
   }
   .nav-link {
     display: inline-flex;
     align-items: center;
-    min-height: 44px;
+    min-height: var(--target-min);
     padding: 0 12px;
     border-radius: var(--radius-md);
     font-size: 14px;
     color: var(--text-secondary);
     text-decoration: none;
     transition:
-      color 0.15s var(--ease-out),
-      background 0.15s var(--ease-out);
+      color var(--duration-fast) var(--ease-out),
+      background-color var(--duration-fast) var(--ease-out),
+      transform var(--duration-fast) var(--ease-out);
   }
   .nav-link:hover {
     color: var(--text-primary);
-    background: var(--border-default);
+    background: var(--tint-strong);
   }
+  .nav-link:active {
+    transform: scale(0.98);
+  }
+  .nav-link[aria-current="page"] {
+    color: var(--text-primary);
+    box-shadow: inset 0 -2px 0 var(--accent-bar);
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* C3 · header CTA: 40 tall visually, 44 hit area */
   .nav-cta {
+    position: relative;
     font-size: 14px;
     padding: 0 16px;
     min-height: 40px;
   }
-  @media (max-width: 720px) {
-    nav {
+  .nav-cta::before {
+    content: "";
+    position: absolute;
+    inset: -2px 0;
+  }
+
+  /* C2 · menu button + panel (< 720) */
+  .menu {
+    display: none;
+  }
+  .menu-button {
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--target-min);
+    height: var(--target-min);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-md);
+    background: transparent;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition:
+      border-color var(--duration-fast) var(--ease-out),
+      background-color var(--duration-fast) var(--ease-out),
+      transform var(--duration-fast) var(--ease-out);
+  }
+  .menu-button::-webkit-details-marker {
+    display: none;
+  }
+  .menu-button:hover {
+    border-color: var(--border-strong-hover);
+    background: var(--tint-subtle);
+  }
+  .menu-button:active {
+    transform: scale(0.98);
+    border-color: var(--focus-color);
+  }
+  /* Icon renders its own <svg>, outside this component's scope. */
+  .menu :global(.icon-close),
+  .menu[open] :global(.icon-open) {
+    display: none;
+  }
+  .menu[open] :global(.icon-close) {
+    display: block;
+  }
+  .menu-panel {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: 8px max(20px, env(safe-area-inset-right)) 16px max(20px, env(safe-area-inset-left));
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-md);
+  }
+  .menu[open] .menu-panel {
+    animation: menu-in var(--duration-base) var(--ease-out);
+  }
+  @keyframes menu-in {
+    from {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+  }
+  .menu-panel ul {
+    list-style: none;
+  }
+  .menu-panel li + li {
+    border-top: 1px solid var(--border-subtle);
+  }
+  .menu-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 48px;
+    font-size: 16px;
+    color: var(--text-secondary);
+    text-decoration: none;
+  }
+  .menu-link:hover {
+    color: var(--text-primary);
+  }
+  .menu-link.is-current {
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  .menu-tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: var(--tracking-wide);
+    color: var(--text-link);
+  }
+
+  @media (max-width: 719.98px) {
+    .nav-desktop {
       display: none;
+    }
+    .menu {
+      display: block;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .nav-link:active,
+    .menu-button:active {
+      transform: none;
     }
   }
 </style>

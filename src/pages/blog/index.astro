@@ -1,0 +1,127 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Nav from "../../components/Nav.astro";
+import Footer from "../../components/Footer.astro";
+import PostRow from "../../components/PostRow.astro";
+import { BLOG_DEFAULT_OG, BLOG_INTRO, countLabel, getPosts } from "../../lib/blog";
+import { links } from "../../data/content";
+
+const posts = await getPosts();
+---
+
+<Layout title="Writing · Quincy Iheme" description={BLOG_INTRO} ogImage={BLOG_DEFAULT_OG} ogImageAlt="Writing · Quincy Iheme">
+  <Nav current="writing" />
+  <main id="main" tabindex="-1">
+    <div class="container">
+      <div class="blog-index">
+        <p class="eyebrow">
+          {countLabel(posts.length)} <span aria-hidden="true">·</span>
+          <a class="eyebrow-rss" href="/rss.xml">rss</a>
+        </p>
+        <h1 class="index-h1">Writing</h1>
+        <p class="index-intro">{BLOG_INTRO}</p>
+
+        {
+          posts.length > 0 ? (
+            <ul class="posts">
+              {posts.map((post) => (
+                <PostRow post={post} />
+              ))}
+            </ul>
+          ) : (
+            <div class="empty">
+              <p class="empty-title">No posts yet.</p>
+              <p class="empty-body">
+                Until the first one lands, I post on{" "}
+                <a class="empty-link" href={links.linkedin} rel="noopener">
+                  LinkedIn<span aria-hidden="true">&nbsp;↗</span>
+                  <span class="sr-only"> (opens linkedin.com)</span>
+                </a>
+                .
+              </p>
+            </div>
+          )
+        }
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .blog-index {
+    max-width: var(--list-max);
+    margin: 0 auto;
+    padding-top: clamp(40px, 6vw, 80px);
+    padding-bottom: 96px;
+  }
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+  }
+  /* 44px target without growing the eyebrow line (C4) */
+  .eyebrow-rss {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--target-min);
+    padding: 0 10px;
+    margin: -13px 0 -13px -10px;
+    color: var(--text-link);
+    text-decoration: none;
+  }
+  .eyebrow-rss:hover {
+    color: var(--text-link-hover);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .index-h1 {
+    font-family: var(--font-display);
+    font-size: var(--fs-h1-index);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: var(--tracking-tighter);
+    margin-bottom: 12px;
+  }
+  .index-intro {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    max-width: 56ch;
+    margin-bottom: 40px;
+  }
+  .posts {
+    list-style: none;
+    border-top: 1px solid var(--border-default);
+  }
+  .empty {
+    display: grid;
+    gap: 8px;
+    padding: 32px 24px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+  }
+  .empty-title {
+    font-family: var(--font-display);
+    font-size: 19px;
+    font-weight: 600;
+  }
+  .empty-body {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+  .empty-link {
+    color: var(--text-link);
+    text-decoration: underline 1px;
+    text-underline-offset: 3px;
+  }
+  .empty-link:hover {
+    color: var(--text-link-hover);
+  }
+</style>

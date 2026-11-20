@@ -1,0 +1,70 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout title="Not found · Quincy Iheme" description="That page isn’t here. The link may be old or mistyped.">
+  <Nav />
+  <main id="main" tabindex="-1">
+    <div class="container">
+      <div class="not-found">
+        <!-- A static page can't know the requested path at build time; fill it in on load. -->
+        <p class="eyebrow">404<span data-path hidden> · <span data-path-value></span></span></p>
+        <h1 class="nf-h1">That page isn’t here.</h1>
+        <p class="nf-body">The link may be old or mistyped.</p>
+        <div class="nf-actions">
+          <a class="btn btn-primary" href="/blog">All writing</a>
+          <a class="btn btn-ghost" href="/">Home</a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  const wrap = document.querySelector<HTMLElement>("[data-path]");
+  const value = document.querySelector<HTMLElement>("[data-path-value]");
+  if (wrap && value && location.pathname !== "/404") {
+    value.textContent = location.pathname;
+    wrap.hidden = false;
+  }
+</script>
+
+<style>
+  .not-found {
+    max-width: var(--measure);
+    margin: 0 auto;
+    padding: 96px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: var(--tracking-wider);
+    color: var(--text-secondary);
+    overflow-wrap: anywhere;
+  }
+  .nf-h1 {
+    font-family: var(--font-display);
+    font-size: clamp(30px, 4vw, 40px);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+  }
+  .nf-body {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+  }
+  .nf-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+</style>
