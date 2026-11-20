@@ -6,7 +6,7 @@
 
 export const site = {
   name: "Quincy Iheme",
-  jobTitle: "Senior Engineering Manager",
+  jobTitle: "Engineering Leader",
   title: "Quincy Iheme — Engineering Leader, Frontend Platforms & Design Systems",
   description:
     "Quincy Iheme is an engineering leader for frontend platforms, design systems and customer-facing web. He leads three teams (20+ engineers) behind Xfinity.com's marketing and customer acquisition experiences and the shared frontend platform other teams build on.",
