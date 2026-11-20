@@ -1,8 +1,9 @@
 # Quincy Iheme — Portfolio
 
 Personal portfolio site built with [Astro](https://astro.build/), styled with
-the **Quincy OS Design System** (v1.1) tokens. Fully static, deployed to Vercel (no adapter: Vercel's Astro preset serves
-`dist/`, so `vercel.json` can set security and caching headers).
+the **Cobalt Design System** (v1.1) tokens. Fully static, deployed to Vercel (no
+adapter: Vercel's Astro preset serves `dist/`, so `vercel.json` can set
+security and caching headers).
 
 ## Structure
 
@@ -14,7 +15,7 @@ src/
 ├── layouts/         # Layout.astro (html shell, SEO/OG meta, JSON-LD, fonts)
 ├── pages/           # index, 404, robots.txt, sitemap.xml
 └── styles/
-    ├── tokens.css   # Quincy OS color, type, radius, motion tokens (dark mode)
+    ├── tokens.css   # Cobalt color, type, radius, motion tokens (dark mode)
     └── global.css   # Reset, shared section/button/tag styles
 public/
 ├── favicon.svg, favicon.ico, apple-touch-icon.png, icon-192/512.png
