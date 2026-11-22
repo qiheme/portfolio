@@ -6,5 +6,7 @@ import vercel from "@astrojs/vercel";
 export default defineConfig({
   site: "https://www.quincyihe.me",
   output: "static",
-  adapter: vercel(),
+  adapter: vercel({
+    webAnalytics: { enabled: true },
+  }),
 });
