@@ -1,0 +1,149 @@
+---
+/*
+ * C5 · Post row. The title is the only link; its ::after stretches over the
+ * whole row so the row is clickable while the accessible name stays the title.
+ */
+import {
+  type Post,
+  formatDate,
+  formatShortDate,
+  isoDate,
+  postUrl,
+  showDraftPill,
+  updatedDate,
+} from "../lib/blog";
+
+interface Props {
+  post: Post;
+  variant?: "full" | "compact";
+}
+const { post, variant = "full" } = Astro.props;
+const { title, description, pubDate, tags } = post.data;
+const updated = updatedDate(post);
+const tag = tags[0];
+---
+
+<li class:list={["post-row", `post-row--${variant}`]}>
+  <div class="post-date">
+    <time datetime={isoDate(pubDate)}>{formatDate(pubDate)}</time>
+    {updated && <span class="post-upd">upd <time datetime={isoDate(updated)}>{formatShortDate(updated)}</time></span>}
+  </div>
+  <div class="post-body">
+    {showDraftPill(post) && <span class="pill-draft">Draft · dev only</span>}
+    <a class="post-title" href={postUrl(post)}>{title}</a>
+    <p class="post-desc">{description}</p>
+    {
+      variant === "full" && tag && (
+        <div class="post-tags">
+          <span class="tag">{tag}</span>
+        </div>
+      )
+    }
+  </div>
+</li>
+
+<style>
+  .post-row {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    margin: 0 -12px;
+    padding: 24px 12px;
+    border-radius: var(--radius-md);
+    transition:
+      background-color var(--duration-base) var(--ease-out),
+      transform var(--duration-fast) var(--ease-out);
+  }
+  /* Divider aligned to the column (the row itself bleeds 12px for its hover fill). */
+  .post-row::before {
+    content: "";
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: -1px;
+    height: 1px;
+    background: var(--border-default);
+  }
+  .post-row--compact {
+    padding: 20px 12px;
+  }
+  .post-row:hover {
+    background: var(--tint-subtle);
+  }
+  .post-row:active {
+    background: var(--tint-default);
+    transform: scale(0.995);
+  }
+  /* The ring sits on the row, not the title text (D8). */
+  .post-row:has(.post-title:focus-visible) {
+    outline: var(--focus-ring);
+    outline-offset: var(--focus-offset);
+  }
+  .post-title:focus-visible {
+    outline: none;
+  }
+
+  .post-date {
+    flex: 0 0 128px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding-top: 4px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: var(--tracking-wide);
+    color: var(--text-secondary);
+  }
+  .post-upd {
+    font-size: 11px;
+  }
+  .post-body {
+    flex: 1 1 300px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .post-title {
+    font-family: var(--font-display);
+    font-size: var(--fs-row-title);
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+    text-decoration: none;
+    overflow-wrap: anywhere;
+  }
+  .post-row--compact .post-title {
+    font-size: 19px;
+  }
+  .post-title::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+  }
+  .post-row:hover .post-title,
+  .post-row:has(.post-title:focus-visible) .post-title {
+    text-decoration: underline 1px;
+    text-underline-offset: 4px;
+  }
+  .post-desc {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    overflow-wrap: anywhere;
+  }
+  .post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .post-row:active {
+      transform: none;
+    }
+  }
+</style>

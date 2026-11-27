@@ -1,6 +1,8 @@
 /*
  * Cobalt Design System v1.1 — tokens (dark mode, the system default).
  * Ported from the design system's colors_and_type.css. Fonts load in Layout.astro.
+ * Semantic tokens synced to @q-labs/cobalt 0.4.0 (Q-Labs/cobalt#27).
+ * The "Site" block at the end is local to quincyihe.me and not part of Cobalt.
  */
 
 :root {
@@ -15,6 +17,7 @@
   --cobalt-400: #3b82f6;
   --cobalt-500: #2563eb;
   --cobalt-600: #1d4ed8;
+  --cobalt-700: #1e3a8a;
 
   --crimson-400: #f84b4b;
   --crimson-500: #ef2222;
@@ -29,18 +32,38 @@
   --border-subtle: rgba(255, 255, 255, 0.05);
   --border-default: rgba(255, 255, 255, 0.09);
   --border-strong: rgba(255, 255, 255, 0.15);
+  --border-strong-hover: rgba(255, 255, 255, 0.3);
+  --border-danger: rgba(248, 75, 75, 0.3);
+
+  /* Tints (hover / pressed overlays) */
+  --tint-subtle: rgba(255, 255, 255, 0.03);
+  --tint-default: rgba(255, 255, 255, 0.05);
+  --tint-strong: rgba(255, 255, 255, 0.09);
+  --bg-scrim: rgba(4, 5, 8, 0.85); /* sticky header glass, with blur(16px) */
 
   /* Text */
   --text-primary: #eef0f5;
   --text-secondary: #8b95a8;
   --text-tertiary: #556070; /* decorative only: fails 4.5:1 for text */
   --text-accent: var(--cobalt-400);
+  --text-danger: var(--crimson-400);
+  --text-link: var(--cobalt-300);
+  --text-link-hover: var(--text-primary);
 
   /* Interactive */
   --accent-default: var(--cobalt-500);
-  --accent-hover: var(--cobalt-400);
-  --accent-pressed: var(--cobalt-600);
+  /* White on cobalt-400 is 3.68:1 (fails AA); cobalt-600 is 6.70:1. */
+  --accent-hover: var(--cobalt-600);
+  --accent-pressed: var(--cobalt-700);
   --accent-subtle: rgba(37, 99, 235, 0.12);
+  --accent-bar: var(--cobalt-400); /* current-page indicator */
+  --danger-subtle: rgba(239, 34, 34, 0.12);
+
+  /* Focus */
+  --focus-color: var(--cobalt-400); /* 5.54:1 on bg-base */
+  --focus-width: 2px;
+  --focus-offset: 3px;
+  --focus-ring: var(--focus-width) solid var(--focus-color);
 
   --status-active: #34d399;
   --status-info: var(--cobalt-300);
@@ -51,9 +74,9 @@
   --shadow-glow-cobalt: 0 0 24px rgba(37, 99, 235, 0.3);
 
   /* Type */
-  --font-display: "Space Grotesk", "Helvetica Neue", sans-serif;
-  --font-body: "DM Sans", "Helvetica Neue", sans-serif;
-  --font-mono: "JetBrains Mono", "Fira Code", monospace;
+  --font-display: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "DM Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
 
   --tracking-tighter: -0.04em;
   --tracking-tight: -0.02em;
@@ -68,14 +91,33 @@
 
   /* Motion */
   --ease-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --duration-fast: 150ms;
+  --duration-base: 200ms;
 
   /* Layout */
+  --measure: 680px; /* long-form reading width, ~70 characters */
+
+  /* ── Site (quincyihe.me only, not in Cobalt) ── */
   --page-max: 1080px;
-  --gutter: 40px;
+  --list-max: 760px;
+  --gutter: clamp(20px, 3.2vw, 40px);
+  --nav-height: 60px;
+  --target-min: 44px;
+  --z-nav: 100;
+  --z-skip: 200;
+
+  --fs-prose: clamp(17px, 0.4vw + 15.6px, 18px);
+  --fs-lede: clamp(17px, 0.4vw + 15.6px, 19px);
+  --fs-h3: clamp(19px, 0.4vw + 17.5px, 21px);
+  --fs-row-title: clamp(19px, 0.4vw + 17px, 22px);
+  --fs-h2: clamp(24px, 0.8vw + 21px, 28px);
+  --fs-h1-article: clamp(30px, 3vw + 10px, 44px);
+  --fs-h1-index: clamp(32px, 4.2vw, 44px);
 }
 
-@media (max-width: 640px) {
+@media (prefers-reduced-motion: reduce) {
   :root {
-    --gutter: 20px;
+    --duration-fast: 0ms;
+    --duration-base: 0ms;
   }
 }

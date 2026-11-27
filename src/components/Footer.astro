@@ -10,6 +10,7 @@ const year = new Date().getFullYear();
       <li><a href={links.github} rel="noopener">GitHub</a></li>
       <li><a href={links.linkedin} rel="noopener">LinkedIn</a></li>
       <li><a href={`mailto:${links.email}`}>Email</a></li>
+      <li><a href="/rss.xml">RSS</a></li>
     </ul>
   </div>
 </footer>
@@ -21,7 +22,10 @@ const year = new Date().getFullYear();
   .footer-inner {
     max-width: var(--page-max);
     margin: 0 auto;
-    padding: 20px var(--gutter);
+    padding-top: 20px;
+    padding-bottom: max(20px, env(safe-area-inset-bottom));
+    padding-left: max(var(--gutter), env(safe-area-inset-left));
+    padding-right: max(var(--gutter), env(safe-area-inset-right));
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -36,12 +40,13 @@ const year = new Date().getFullYear();
   .footer-links {
     list-style: none;
     display: flex;
-    gap: 4px 20px;
+    flex-wrap: wrap;
+    gap: 8px 20px;
   }
   .footer-links a {
     display: inline-flex;
     align-items: center;
-    min-height: 44px;
+    min-height: var(--target-min);
     font-size: 14px;
     color: var(--text-secondary);
     text-decoration: none;

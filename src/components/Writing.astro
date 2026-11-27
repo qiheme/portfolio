@@ -1,0 +1,42 @@
+---
+/* Home teaser: the latest three posts. Renders nothing when there are none. */
+import Icon from "./Icon.astro";
+import PostRow from "./PostRow.astro";
+import { getPosts } from "../lib/blog";
+
+const latest = (await getPosts()).slice(0, 3);
+---
+
+{
+  latest.length > 0 && (
+    <section id="writing" class="section container" aria-labelledby="writing-title">
+      <div class="section-header writing-header">
+        <h2 id="writing-title" class="section-title">
+          Writing
+        </h2>
+        <span class="section-meta">latest</span>
+        <a class="link-arrow writing-all" href="/blog">
+          All writing <Icon name="arrow-right" size={14} />
+        </a>
+      </div>
+      <ul class="writing-list">
+        {latest.map((post) => (
+          <PostRow post={post} variant="compact" />
+        ))}
+      </ul>
+    </section>
+  )
+}
+
+<style>
+  .writing-header {
+    margin-bottom: 20px;
+  }
+  .writing-all {
+    margin-left: auto;
+  }
+  .writing-list {
+    list-style: none;
+    border-top: 1px solid var(--border-default);
+  }
+</style>
