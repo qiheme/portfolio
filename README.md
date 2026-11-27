@@ -1,7 +1,9 @@
 # Quincy Iheme — Portfolio
 
 Personal portfolio and blog built with [Astro](https://astro.build/), styled with
-the **Cobalt Design System** tokens. Fully static, deployed to Vercel.
+the **Cobalt Design System** tokens. Fully static, deployed to Vercel with no
+adapter: Vercel's Astro preset serves `dist/`, so `vercel.json` can set the
+security and caching headers.
 
 ## Structure
 
@@ -9,35 +11,40 @@ the **Cobalt Design System** tokens. Fully static, deployed to Vercel.
 src/
 ├── components/        # Nav (+ mobile menu), Hero, Work, Speaking, Capabilities,
 │                      # Writing (home teaser), Contact, Footer, PostRow, PostHeader, Icon, BrandMark
+├── assets/            # Images optimized at build time (headshot → AVIF/WebP)
 ├── content/blog/      # Blog posts (Markdown)
 ├── content.config.ts  # Blog collection schema (Zod)
 ├── data/content.ts    # All site copy in one place
-├── layouts/           # Layout.astro (html shell, meta, OG, canonical, fonts)
+├── layouts/           # Layout.astro (html shell, meta, OG, canonical, JSON-LD, fonts)
 ├── lib/blog.ts        # Post queries, draft filtering, dates, reading time, Markdown lint
 ├── pages/
 │   ├── index.astro
 │   ├── blog/index.astro       # /blog
 │   ├── blog/[...slug].astro   # /blog/<slug>
 │   ├── 404.astro
+│   ├── robots.txt.ts          # /robots.txt
 │   └── rss.xml.js             # /rss.xml
 └── styles/
     ├── tokens.css     # Cobalt tokens (synced to @q-labs/cobalt) + site-only tokens
     └── global.css     # Reset, shared section/button/tag styles, .prose long-form type
 public/
-├── og/                # 1200×630 social cards (blog-default.png + one per post)
-└── headshot.jpg, favicon.svg, apple-touch-icon.png
+├── og/                # 1200×630 social cards (home.png, blog-default.png, one per post)
+├── favicon.svg, favicon.ico, apple-touch-icon.png, icon-192/512.png, icon-maskable-512.png
+└── site.webmanifest
 ```
 
 A sitemap (`/sitemap-index.xml`) is generated at build time by `@astrojs/sitemap`.
 
 ## Commands
 
-| Command           | Action                                   |
-| ----------------- | ---------------------------------------- |
-| `npm install`     | Install dependencies                     |
-| `npm run dev`     | Start the dev server at `localhost:4321` |
-| `npm run build`   | Build the production site                |
-| `npm run preview` | Preview the production build locally     |
+| Command           | Action                                                  |
+| ----------------- | ------------------------------------------------------- |
+| `npm install`     | Install dependencies                                    |
+| `npm run dev`     | Start the dev server at `localhost:4321`                |
+| `npm run build`   | Build the production site                               |
+| `npm run preview` | Preview the production build locally                    |
+| `npm run check`   | Type-check `.astro` and `.ts` files                     |
+| `npm run verify`  | Type-check, build, and validate the HTML (what CI runs) |
 
 ## Editing content
 
@@ -80,3 +87,28 @@ sitemap. Reading time is `ceil(words / 230)`, with fenced code excluded.
 
 If you delete the last post, clear Astro's cache (`rm -rf node_modules/.astro`) before
 a local build. Astro's glob loader keeps the last entry cached when the folder is empty.
+
+## Front-End Checklist
+
+The site follows [frontendchecklist.io](https://frontendchecklist.io/). The
+pieces that matter for this site:
+
+- **Head & SEO**: canonical URL, robots meta, Open Graph + Twitter cards with a
+  1200×630 image, `Person`/`WebSite` JSON-LD, `robots.txt`, sitemap.
+- **Icons**: SVG + ICO favicons, Apple touch icon, web app manifest.
+- **Performance**: self-hosted variable fonts (preloaded, `font-display: swap`),
+  AVIF/WebP headshot with 1x–3x `srcset`, immutable caching on hashed assets.
+- **Security** (`vercel.json`): CSP that allows only same-origin scripts, styles
+  and fonts (no inline `<script>` or `<style>`; inline `style=""` attributes are
+  allowed for Shiki code highlighting), HSTS, `X-Frame-Options`,
+  `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`, COOP.
+  `astro.config.mjs` keeps scripts, CSS and fonts as files so this holds.
+  Images may load from any HTTPS host. Embedded frames are limited to YouTube
+  (`youtube-nocookie.com`) and Vimeo; add other embed hosts to `frame-src`.
+  Hosts other than `www.quincyihe.me` (Vercel previews) get a CSP that also
+  allows the Vercel toolbar and preview comments.
+- **Analytics**: Vercel Web Analytics via `@vercel/analytics/astro` (same-origin,
+  so it passes the CSP).
+- **Accessibility**: skip link, landmarks, one `h1`, visible focus styles,
+  reduced-motion support, 0 axe-core violations at desktop and mobile widths.
+- **Other**: custom 404 page, print stylesheet, HTML validation in CI.

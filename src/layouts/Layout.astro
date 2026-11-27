@@ -1,6 +1,15 @@
 ---
+import "@fontsource-variable/dm-sans/opsz.css";
+import "@fontsource-variable/dm-sans/opsz-italic.css";
+import "@fontsource-variable/space-grotesk";
+import "@fontsource-variable/jetbrains-mono";
 import "../styles/global.css";
-import { site, hero } from "../data/content";
+import bodyFont from "@fontsource-variable/dm-sans/files/dm-sans-latin-opsz-normal.woff2?url";
+import displayFont from "@fontsource-variable/space-grotesk/files/space-grotesk-latin-wght-normal.woff2?url";
+import { getImage } from "astro:assets";
+import Analytics from "@vercel/analytics/astro";
+import headshot from "../assets/headshot.jpg";
+import { site, links } from "../data/content";
 
 interface Props {
   title?: string;
@@ -9,14 +18,16 @@ interface Props {
   ogTitle?: string;
   /** "article" on blog posts; everything else is a "website". */
   ogType?: "website" | "article";
-  /** Site-relative or absolute path. Defaults to the headshot. */
+  /** Site-relative or absolute path to a 1200×630 card. Defaults to the home card. */
   ogImage?: string;
-  /** Alt text for a 1200×630 social card. Omit for the headshot. */
+  /** Alt text for the social card. Defaults to the home card's alt, else ogTitle. */
   ogImageAlt?: string;
   /** Absolute canonical URL. Defaults to this page on the production site. */
   canonical?: string;
   publishedTime?: Date;
   modifiedTime?: Date;
+  /** Set on pages that should stay out of search results (e.g. 404). */
+  noindex?: boolean;
 }
 
 const {
@@ -24,62 +35,88 @@ const {
   description = site.description,
   ogTitle = title,
   ogType = "website",
-  ogImage = hero.image,
-  ogImageAlt,
+  ogImage = site.ogImage,
   canonical = new URL(Astro.url.pathname, Astro.site).href,
   publishedTime,
   modifiedTime,
+  noindex = false,
 } = Astro.props;
+const ogImageAlt = Astro.props.ogImageAlt ?? (ogImage === site.ogImage ? site.ogImageAlt : ogTitle);
 
 // Open Graph consumers (LinkedIn, Slack) need a fully qualified image URL.
 const ogImageUrl = new URL(ogImage, Astro.site).href;
-// Social cards are 1200×630 and get the large Twitter layout; the headshot stays "summary".
-const isSocialCard = ogImage.startsWith("/og/");
+// Structured data gets the portrait, not the wide share card.
+const portrait = await getImage({ src: headshot, width: 400, format: "jpg" });
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${Astro.site}#website`,
+      url: Astro.site?.href,
+      name: site.name,
+      inLanguage: "en",
+    },
+    {
+      "@type": "Person",
+      "@id": `${Astro.site}#person`,
+      name: site.name,
+      url: Astro.site?.href,
+      image: new URL(portrait.src, Astro.site).href,
+      jobTitle: site.jobTitle,
+      worksFor: { "@type": "Organization", name: "Comcast" },
+      address: { "@type": "PostalAddress", addressLocality: "Cherry Hill", addressRegion: "NJ" },
+      email: `mailto:${links.email}`,
+      sameAs: [links.linkedin, links.github],
+    },
+  ],
+};
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="color-scheme" content="dark" />
-    <meta name="theme-color" content="#040508" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
+    <meta name="author" content={site.name} />
+    <meta name="robots" content={noindex ? "noindex, follow" : "index, follow"} />
+    {!noindex && <link rel="canonical" href={canonical} />}
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#040508" />
+
+    <link rel="preload" href={bodyFont} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={displayFont} as="font" type="font/woff2" crossorigin />
 
     <meta property="og:type" content={ogType} />
-    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:locale" content="en_US" />
+    {!noindex && <meta property="og:url" content={canonical} />}
     <meta property="og:title" content={ogTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImageUrl} />
-    {
-      isSocialCard && (
-        <>
-          <meta property="og:image:width" content="1200" />
-          <meta property="og:image:height" content="630" />
-          <meta property="og:image:alt" content={ogImageAlt ?? ogTitle} />
-        </>
-      )
-    }
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={ogImageAlt} />
     {publishedTime && <meta property="article:published_time" content={publishedTime.toISOString()} />}
     {modifiedTime && <meta property="article:modified_time" content={modifiedTime.toISOString()} />}
-    <meta name="twitter:card" content={isSocialCard ? "summary_large_image" : "summary"} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
 
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <link rel="alternate" type="application/rss+xml" title="Writing · Quincy Iheme" href="/rss.xml" />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@600;700&display=swap"
-      rel="stylesheet"
-    />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd).replace(/</g, "\\u003c")} />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
     <slot />
+    <Analytics />
   </body>
 </html>

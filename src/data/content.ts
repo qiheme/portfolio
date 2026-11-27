@@ -5,10 +5,16 @@
  */
 
 export const site = {
+  name: "Quincy Iheme",
+  jobTitle: "Engineering Leader",
   title: "Quincy Iheme — Engineering Leader, Frontend Platforms & Design Systems",
   description:
     "Quincy Iheme is an engineering leader for frontend platforms, design systems and customer-facing web. He leads three teams (20+ engineers) behind Xfinity.com's marketing and customer acquisition experiences and the shared frontend platform other teams build on.",
   updated: "Nov 2026",
+  /* 1200×630 social card in public/; regenerate if the headline changes. */
+  ogImage: "/og/home.png",
+  ogImageAlt:
+    "Quincy Iheme, Engineering Leader for Frontend Platforms & Design Systems: Engineering ambition into operating rhythm.",
 };
 
 export const links = {
@@ -23,7 +29,6 @@ export const hero = {
   headlineLead: "Engineering ambition",
   headlineAccent: "into operating rhythm.",
   bio: "I'm a senior engineering manager at Comcast. Through tech and team leads, I lead three teams, 20+ engineers, behind Xfinity.com's marketing and customer acquisition experiences and the shared frontend platform and design system other product teams build on. From SDET to senior engineering manager over 12 years, I've learned the job is turning big goals into a rhythm teams can ship on: clear ownership, platform work kept separate from feature delivery, steady releases, and engineers growing into leads.",
-  image: "/headshot.jpg",
 };
 
 export const stats = [
