@@ -12,7 +12,7 @@ export const site = {
     "Quincy Iheme is an engineering leader for frontend platforms, design systems and customer-facing web. He leads three teams (20+ engineers) behind Xfinity.com's marketing and customer acquisition experiences and the shared frontend platform other teams build on.",
   updated: "Nov 2026",
   /* 1200×630 social card in public/; regenerate if the headline changes. */
-  ogImage: "/og-image.png",
+  ogImage: "/og/home.png",
   ogImageAlt:
     "Quincy Iheme, Engineering Leader for Frontend Platforms & Design Systems: Engineering ambition into operating rhythm.",
 };
