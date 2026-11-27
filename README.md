@@ -103,6 +103,10 @@ pieces that matter for this site:
   allowed for Shiki code highlighting), HSTS, `X-Frame-Options`,
   `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`, COOP.
   `astro.config.mjs` keeps scripts, CSS and fonts as files so this holds.
+  Images may load from any HTTPS host. Embedded frames are limited to YouTube
+  (`youtube-nocookie.com`) and Vimeo; add other embed hosts to `frame-src`.
+  Hosts other than `www.quincyihe.me` (Vercel previews) get a CSP that also
+  allows the Vercel toolbar and preview comments.
 - **Analytics**: Vercel Web Analytics via `@vercel/analytics/astro` (same-origin,
   so it passes the CSP).
 - **Accessibility**: skip link, landmarks, one `h1`, visible focus styles,

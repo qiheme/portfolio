@@ -6,7 +6,9 @@ import "@fontsource-variable/jetbrains-mono";
 import "../styles/global.css";
 import bodyFont from "@fontsource-variable/dm-sans/files/dm-sans-latin-opsz-normal.woff2?url";
 import displayFont from "@fontsource-variable/space-grotesk/files/space-grotesk-latin-wght-normal.woff2?url";
+import { getImage } from "astro:assets";
 import Analytics from "@vercel/analytics/astro";
+import headshot from "../assets/headshot.jpg";
 import { site, links } from "../data/content";
 
 interface Props {
@@ -43,6 +45,8 @@ const ogImageAlt = Astro.props.ogImageAlt ?? (ogImage === site.ogImage ? site.og
 
 // Open Graph consumers (LinkedIn, Slack) need a fully qualified image URL.
 const ogImageUrl = new URL(ogImage, Astro.site).href;
+// Structured data gets the portrait, not the wide share card.
+const portrait = await getImage({ src: headshot, width: 400, format: "jpg" });
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -59,7 +63,7 @@ const jsonLd = {
       "@id": `${Astro.site}#person`,
       name: site.name,
       url: Astro.site?.href,
-      image: new URL(site.ogImage, Astro.site).href,
+      image: new URL(portrait.src, Astro.site).href,
       jobTitle: site.jobTitle,
       worksFor: { "@type": "Organization", name: "Comcast" },
       address: { "@type": "PostalAddress", addressLocality: "Cherry Hill", addressRegion: "NJ" },

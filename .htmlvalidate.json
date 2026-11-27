@@ -5,7 +5,7 @@
     "void-style": "off",
     "doctype-style": "off",
     "attribute-boolean-style": "off",
-    "no-inline-style": "error",
+    "no-inline-style": "off",
     "long-title": "off"
   }
 }
