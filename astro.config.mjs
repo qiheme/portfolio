@@ -24,7 +24,9 @@ export default defineConfig({
   site: "https://www.quincyihe.me",
   output: "static",
   trailingSlash: "never",
-  adapter: vercel(),
+  adapter: vercel({
+    webAnalytics: { enabled: true },
+  }),
   integrations: [
     sitemap({
       filter: (page) => !page.includes("/404"),
